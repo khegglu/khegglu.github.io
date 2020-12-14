@@ -5,7 +5,17 @@ parent: Documentation
 nav_order: 2
 ---
 
-# Crashing emails with attachments: v16.0.4266.1001
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Crashing emails with attachments: v16.0.4266.1001
 *Microsoft Outlook 2016 may crash when using the Symantec Endpoint Protection (SEP) Outlook Scanner Add-in. Uninstalling or disabling the Symantec add-in resolves the symptoms.*
 
 https://knowledge.broadcom.com/external/article/170414/outlook-2016-crashes-when-using-the-endp.html
@@ -26,19 +36,4 @@ Faulting package full name:
 Faulting package-relative application ID:
 ```
 
-# Crashing 
-
-
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
-## Basic button styles
-
-Test
+## Crashing 
