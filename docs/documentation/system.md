@@ -5,7 +5,6 @@ parent: Documentation
 nav_order: 1
 ---
 
-# System
 {: .no_toc }
 
 ## Table of contents
