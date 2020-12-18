@@ -67,7 +67,7 @@ Set-ADUser -clear PublicDelegates
 
 
 ## Excel:
-### App v16.0.4978.1000 crashing with error referemce to chart.dll
+### App v16.0.4978.1000 crashing with error reference to chart.dll
 The issue is caused by KB4018319 and is solved by installing the appropriate patch:
 
 - [Microsoft Office 2013 - KB2986229 Download](https://download.microsoft.com/download/B/9/9/B99D8FC5-569A-42F0-B0AD-089BB246C327/oart2013-kb2986229-fullfile-x64-glb.exe)
@@ -75,8 +75,8 @@ The issue is caused by KB4018319 and is solved by installing the appropriate pat
 
 ```
 Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
-
-EventID Message:
+```
+```
 Faulting package full name:
 Faulting package-relative application ID:
 Faulting application name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b
