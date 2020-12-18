@@ -17,13 +17,13 @@ nav_order: 2
 
 ## Office Installation
 ### "Error 1907. Could not register font. Verify that you have sufficient permissions to install fonts, and that the system supports this font."
-This error is fixed by running "SFC /SCANNOW" which will reolve a file system issue, the command below is intended for a remote powershell session.
+This error is fixed by running "SFC /SCANNOW" which will resolve a file system issue, the command below is intended for a remote powershell session.
 ```
 Start-Process -FilePath "${env:Windir}\System32\SFC.EXE" -ArgumentList '/scannow' -Wait -Verb RunAs -WindowStyle hidden
 ```
 
 ## Outlook
-### Crashing emails with attachments: v16.0.4266.1001
+### App v16.0.4266.1001 crashing with emails that have attachments
 *Microsoft Outlook 2016 may crash when using the Symantec Endpoint Protection (SEP) Outlook Scanner Add-in. Uninstalling or disabling the Symantec add-in resolves the symptoms.*
 
 https://knowledge.broadcom.com/external/article/170414/outlook-2016-crashes-when-using-the-endp.html
