@@ -15,6 +15,10 @@ nav_order: 2
 
 ---
 
+14.0 = Office 2010
+15.0 = Office 2013
+16.0 = Office 2016
+
 ## Office Installation
 ### "Error 1907. Could not register font. Verify that you have sufficient permissions to install fonts, and that the system supports this font."
 This error is fixed by running "SFC /SCANNOW" which will resolve a file system issue, the command below is intended for a remote powershell session.
@@ -42,6 +46,11 @@ Faulting module path: <C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE>
 Report Id: 912141fa-54e5-430c-b8dd-adb8a914bfa7
 Faulting package full name:
 Faulting package-relative application ID:
+```
+### Email rule - run a script
+This feature was by default hidden after a security update, it can be enabled through the users registry.
+```
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Outlook\Security" /v EnableUnsafeClientMailRules /t REG_DWORD /d 1 /f
 ```
 
 ## Excel
