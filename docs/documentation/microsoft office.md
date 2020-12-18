@@ -67,6 +67,32 @@ Set-ADUser -Remove @{PublicDelegates="UID"}
 
 
 ## Excel:
-### Crashin
+### App v16.0.4978.1000 crashing with error referemce to chart.dll
+The issue is caused by KB4018319 and is solved by installing the appropriate patch:
+
+- [Microsoft Office 2013 - KB2986229 Download](https://download.microsoft.com/download/B/9/9/B99D8FC5-569A-42F0-B0AD-089BB246C327/oart2013-kb2986229-fullfile-x64-glb.exe)
+- [Microsoft Office 2016 - KB4011128 Download](https://download.microsoft.com/download/1/A/6/1A69A731-CEC8-4D3F-BA81-0E801E8B0C7D/chart2016-kb4011128-fullfile-x64-glb.exe)
+
+```
+Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
+
+EventID Message:
+Faulting package full name:
+Faulting package-relative application ID:
+Faulting application name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b
+Faulting module name: chart.dll, version: 16.0.4678.1000, time stamp: 0x5aa7ed63
+Exception code: 0xc0000005
+Fault offset: 0x00000000001ba0ac
+Faulting process id: 0x87c
+Faulting application start time: 0x01d6bc44e1f3dcfd
+Faulting application path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE
+Faulting module path: C:\Program Files\Microsoft Office\Office16\chart.dll
+Report Id: 91239ca4-9421-40c5-9383-ee093ae9cf0e
+```
+
+
+
+
+
 
 
