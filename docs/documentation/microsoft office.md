@@ -54,6 +54,17 @@ This feature was by default hidden after a security update, it can be enabled th
 ```
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Outlook\Security" /v EnableUnsafeClientMailRules /t REG_DWORD /d 1 /f
 ```
+### "The Delegates settings were not saved correctly. Unable to activate send-on-behalf-of list. You do not have sufficient permission to perform this operation on this object."
+*This error can occur when the Delegates list contains a mailbox user who no longer exists in the organization. To fix the error remove the non-existent user from the Delegates list before you attempt to add other Delegates or change the Delegates settings.*
+
+The first command is to check the attribute, the next following 2 are either to clear a specific inactive user or to remove them all.
+```
+Get-ADUser $user -Properties publicDelegates | Select-Object -ExpandProperty publicDelegates
+
+Set-ADUser -clear PublicDelegates
+Set-ADUser -Remove @{PublicDelegates="UID"}
+```
+
 
 ## Excel:
 ### Crashin
