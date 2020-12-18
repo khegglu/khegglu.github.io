@@ -46,8 +46,6 @@ Faulting application start time: 0x01d6ad0dbb0ee84c
 Faulting application path: <C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE>
 Faulting module path: <C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE>
 Report Id: 912141fa-54e5-430c-b8dd-adb8a914bfa7
-Faulting package full name:
-Faulting package-relative application ID:
 ```
 ### Email rule - run a script
 This feature was by default hidden after a security update, it can be enabled through the users registry.
@@ -77,8 +75,6 @@ The issue is caused by KB4018319 and is solved by installing the appropriate pat
 Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
 ```
 ```
-Faulting package full name:
-Faulting package-relative application ID:
 Faulting application name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b
 Faulting module name: chart.dll, version: 16.0.4678.1000, time stamp: 0x5aa7ed63
 Exception code: 0xc0000005
