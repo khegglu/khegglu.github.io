@@ -61,8 +61,8 @@ The first command is to check the attribute, the next following 2 are either to 
 ```
 Get-ADUser $user -Properties publicDelegates | Select-Object -ExpandProperty publicDelegates
 
-Set-ADUser -clear PublicDelegates
 Set-ADUser -Remove @{PublicDelegates="UID"}
+Set-ADUser -clear PublicDelegates
 ```
 
 
