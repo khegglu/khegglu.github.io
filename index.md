@@ -12,11 +12,6 @@ Just the Docs gives your documentation a jumpstart with a responsive Jekyll them
 
 ---
 
-## Getting started
-
-
-
-
 ## About the project
 
-Tinkering with a ghpage
+Tinkering with a decent solution to have simplified access to my work notes and a way to share these.
