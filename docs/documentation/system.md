@@ -45,6 +45,19 @@ Missing: "C:\Windows\Installer"
 * C:\Windows\Temp - completely filled (330GB) with .evtx files
 * Could be related to v1903 update KB4505903
 
+```
+C:\Windows\Temp\
+Microsoft-Windows-AppReadiness_Admin_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-AppReadiness_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-AppXDeploymentServer_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-AppXPackaging_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-SettingSync_Debug_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-SettingSync_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-StateRepository_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-Store_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+Microsoft-Windows-WindowsUpdateClient_Operational_D5CD4A48-AC38-0000-44CE-D1D538ACD601.evtx
+```
+
 The below changes stopped further events from being generated.
 
 ```
