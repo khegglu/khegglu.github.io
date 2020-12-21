@@ -27,9 +27,9 @@ This error is due to issues regarding Zscaler's root CA certificate, this needs 
 
 This error is generally resolved by quickly re-installing google chrome, in our environment there are cases where removing/upgrading chrome fails because the old installation reference is still in the registry. So instead of installing as it should the package delivery system asks for the old installer to remove the old app. In the registry location below there should be a google chrome reference, if it is deleted then the software can be pushed.
 
-'''
+```
 HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\KeyID
-'''
+```
 
 
 
