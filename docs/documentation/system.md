@@ -40,5 +40,36 @@ During installations all the files get extracted in to "C:\Windows\Installer", i
 Missing: "C:\Windows\Installer"
 ```
 
+## Windows 10 v1909: Full HDD - C:\Windows\Temp\Microsoft-Windows\*.evtx
+
+* C:\Windows\Temp - completely filled (330GB) with .evtx files
+* Could be related to v1903 update KB4505903
+
+The below changes stopped further events from being generated.
+
+```
+Local GPO: User Configuration > Administrative Templates > Windows Components > Store > Enable > Turn off the Store application
+reg add 'HKLM\SYSTEM\CurrentControlSet\Services\AppXSvc' /v Start /t REG_DWORD /d 4 /f
+
+reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsGetDiagnosticInfo /t REG_DWORD /d 2 /f
+reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsRunInBackground /t REG_DWORD /d 2 /f
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
