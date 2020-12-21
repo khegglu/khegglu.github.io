@@ -15,6 +15,30 @@ nav_order: 1
 
 ---
 
-## Basic button styles
+## GET-WMIOBJECT : Invalid class "WIN32_VOLUME"
 
-Test
+```
+GET-WMIOBJECT : Invalid class "WIN32_VOLUME"
+    + CategoryInfo          : InvalidType: (:) [Get-WmiObject], ManagementException
+    + FullyQualifiedErrorId : GetWMIManagementException,Microsoft.PowerShell.Commands.GetWmiObjectCommand
+```
+
+This error was encountered on a device that was pending upgrade to Windows 10 v1909, the validation task running to detect if the machine was eligible errored out when running this command and that made it seem like the machine had no disk space available. The WMI had to be completely reset to resolve the issue it had.
+
+```
+Stop-Service -Name "Winmgmt" -Force -Confirm:$false
+cmd /c "winmgmt /resetrepository"
+```
+
+*Rebuilding the WMI repository may result in some third-party products not working until their setup is re-run & their Microsoft Operations Framework re-added back to the repository.*
+
+## "The installer has encountered an unexpected error installing this package. This may indicate a problem with this package. The error code is 2755."
+
+During installations all the files get extracted in to "C:\Windows\Installer", in this case when running installations nothing appeared to be happening when running the installation script. I just happened to run a .msi manually an received this error code, in this scenario the "Installer" folder was missing and was resolved by creating this folder in "C:\Windows".
+
+```
+Missing: "C:\Windows\Installer"
+```
+
+
+
