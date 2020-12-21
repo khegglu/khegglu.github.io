@@ -2,7 +2,7 @@
 layout: default
 title: HP Support
 parent: Documentation
-nav_order: 3
+nav_order: 4
 ---
 
 {: .no_toc }
