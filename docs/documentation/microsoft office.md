@@ -19,6 +19,8 @@ nav_order: 3
 14.0 = Office 2010
 15.0 = Office 2013
 16.0 = Office 2016
+
+Spreadsheet Compare is only available with Office Professional Plus 2013 or Microsoft 365 Apps for enterprise
 ```
 
 ## Office Installation:
