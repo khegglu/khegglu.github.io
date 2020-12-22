@@ -41,6 +41,8 @@ cmd /c '"C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE14\Office Se
 cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE14\Office Setup Controller\setup.exe" /uninstall Standard /config c:\packages\office.xml'
 
 wmic product where "Vendor like '%Microsoft%'" get Name
+
+TASKKILL /F /IM outlook.exe & TASKKILL /F /IM lync.exe & TASKKILL /F /IM winword.exe & TASKKILL /F /IM excel.exe & TASKKILL /F /IM powerpnt.exe & TASKKILL /F /IM msaccess.exe & TASKKILL /F /IM onenote.exe & TASKKILL /F /IM groove.exe & TASKKILL /F /IM visio.exe & TASKKILL /F /IM winproj.exe
 ```
 
 ## Office Installation:
