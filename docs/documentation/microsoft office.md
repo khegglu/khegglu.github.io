@@ -21,6 +21,10 @@ nav_order: 3
 16.0 = Office 2016
 
 Spreadsheet Compare is only available with Office Professional Plus 2013 or Microsoft 365 Apps for enterprise
+
+
+get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\' -recurse | where {$_.name -like '*2016*'}
+cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\{F734ED03-43DA-4720-AB96-33739378FE9F}\cache\install.bat'
 ```
 
 ## Office Installation:
