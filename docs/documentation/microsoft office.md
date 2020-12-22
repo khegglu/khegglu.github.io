@@ -27,6 +27,20 @@ get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\
 cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\{F734ED03-43DA-4720-AB96-33739378FE9F}\cache\install.bat'
 ```
 
+```
+## To Be Orged:
+
+# Basic .XML file needed for office removal:
+# App ID: Access, PrjStd, Visio, Standard, Lync, SkypeforbusinessRetail, ACCESSRT
+
+New-Item -Path 'C:\Packages\office.xml' | add-content -value "<Configuration Product=""Access"">`r`n<Display Level=""none"" CompletionNotice=""No"" SuppressModal=""Yes"" NoCancel=""Yes"" AcceptEula=""Yes"" />`r`n<Setting Id=""SETUP_REBOOT"" Value=""Never"" />`r`n</Configuration>"
+
+Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""Access"">`r`n<Display Level=""none"" CompletionNotice=""No"" SuppressModal=""Yes"" NoCancel=""Yes"" AcceptEula=""Yes"" />`r`n<Setting Id=""SETUP_REBOOT"" Value=""Never"" />`r`n</Configuration>"
+
+cmd /c '"C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE14\Office Setup Controller\setup.exe" /uninstall Standard /config c:\packages\office.xml'
+cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE14\Office Setup Controller\setup.exe" /uninstall Standard /config c:\packages\office.xml'
+```
+
 ## Office Installation:
 ### "Error 1907. Could not register font. Verify that you have sufficient permissions to install fonts, and that the system supports this font."
 This error is fixed by running "SFC /SCANNOW" which will resolve a file system issue, the command below is intended for a remote powershell session.
