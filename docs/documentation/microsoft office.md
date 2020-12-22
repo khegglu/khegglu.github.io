@@ -39,6 +39,8 @@ Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""Access"">`
 
 cmd /c '"C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE14\Office Setup Controller\setup.exe" /uninstall Standard /config c:\packages\office.xml'
 cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE14\Office Setup Controller\setup.exe" /uninstall Standard /config c:\packages\office.xml'
+
+wmic product where "Vendor like '%Microsoft%'" get Name
 ```
 
 ## Office Installation:
