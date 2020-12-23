@@ -66,6 +66,12 @@ msiexec /i C:\Packages\msodbcsql_17.5.2.1_x64.msi /qn ADDLOCAL=ALL IACCEPTMSODBC
 # Silent install of SQLNC
 msiexec /i C:\Packages\sqlncli.msi /qn ADDLOCAL=ALL IACCEPTSQLNCLILICENSETERMS=YES
 
+# Silent install of VNC Server
+cmd /c 'c:\packages\VNC-Server-6.7.2-Windows.exe' /qn REBOOT=ReallySuppress LICENSEKEY=X-X-X-X-X ENABLEAUTOUPDATECHECKS=0 ENABLEANALYTICS=0
+** License confirmation: cmd /c 'C:\Program Files\RealVNC\VNC Server\vnclicense.exe' -add X-X-X-X-X
+# Silent install of VNC Viewer
+cmd /c 'c:\packages\VNC-Viewer-6.20.529-Windows.exe' /qn
+
 ```
 
 
