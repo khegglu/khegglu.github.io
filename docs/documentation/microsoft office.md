@@ -55,6 +55,15 @@ This error is fixed by running "SFC /SCANNOW" which will resolve a file system i
 Start-Process -FilePath "${env:Windir}\System32\SFC.EXE" -ArgumentList '/scannow' -Wait -Verb RunAs -WindowStyle hidden
 ```
 
+### "Error 1305. Setup cannot read file C:\Program Files (x86)\Common File\Microsoft Shared\OFFICE14\MSO.dll"
+
+The error is related to the cd/dvd drive on the client. The upper filter go between the operating system and the main driver, while the lower driver go between the main driver and the hardware. Don't know exactly what causes the error but removing these keys, then rebooting the machine resolves the issue.
+
+```
+reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E967-E325-11CE-BFC1-08002BE10318} /v LowerFilters /f
+reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E967-E325-11CE-BFC1-08002BE10318} /v UpperFilters /f
+```
+
 ## Outlook:
 ### App v16.0.4266.1001 crashing with emails that have attachments
 *Microsoft Outlook 2016 may crash when using the Symantec Endpoint Protection (SEP) Outlook Scanner Add-in. Uninstalling or disabling the Symantec add-in resolves the symptoms.*
@@ -111,6 +120,19 @@ Faulting application start time: 0x01d6bc44e1f3dcfd
 Faulting application path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE
 Faulting module path: C:\Program Files\Microsoft Office\Office16\chart.dll
 Report Id: 91239ca4-9421-40c5-9383-ee093ae9cf0e
+```
+
+## OneNote:
+### On every launch: Microsoft OneNote 2013 requires Visual Basic for Applications
+
+This issue is due to some old files being left behind from a previous installation and the installer is unable to override these, so this is why the application tries to configure these on each launch. In this case the client had an upgrade from 2010 to 2013.
+
+```
+rename-Item "C:\Program Files\Common Files\Microsoft Shared\VBA" "C:\Program Files\Common Files\Microsoft Shared\VBA.old" -confirm:$false -force
+
+Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""Standard"">`r`n<Display Level=""none"" CompletionNotice=""No"" SuppressModal=""Yes"" NoCancel=""Yes"" AcceptEula=""Yes"" />`r`n<Setting Id=""SETUP_REBOOT"" Value=""Never"" />`r`n</Configuration>"
+
+cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller\setup.exe" /repair Standard /config c:\packages\office.xml'
 ```
 
 ## Skype for Business
