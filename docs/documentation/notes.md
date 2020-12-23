@@ -41,6 +41,9 @@ Get-ADUserResultantPasswordPolicy $user
 ## Registry:
 
 ```
+# This registry key when set gives a CLI prompt for credentials instead of a pop-up box!
+Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name ConsolePrompting -Value $true
+
 # Get Windows 10 OS version
 (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
 
