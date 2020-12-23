@@ -123,9 +123,9 @@ Report Id: 91239ca4-9421-40c5-9383-ee093ae9cf0e
 ```
 
 ## OneNote:
-### On every launch: Microsoft OneNote 2013 requires Visual Basic for Applications
+### Microsoft OneNote 2013 requires Visual Basic for Applications. If you continue, Visual Basic for Applications will be installed.
 
-This issue is due to some old files being left behind from a previous installation and the installer is unable to override these, so this is why the application tries to configure these on each launch. In this case the client had an upgrade from 2010 to 2013.
+This issue is due to some old files being left behind from a previous installation and the installer is unable to override these, so this is why the application tries to configure these on each launch. In this case the client had gone through an upgrade from 2010 to 2013.
 
 ```
 rename-Item "C:\Program Files\Common Files\Microsoft Shared\VBA" "C:\Program Files\Common Files\Microsoft Shared\VBA.old" -confirm:$false -force
