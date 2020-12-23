@@ -113,7 +113,17 @@ Faulting module path: C:\Program Files\Microsoft Office\Office16\chart.dll
 Report Id: 91239ca4-9421-40c5-9383-ee093ae9cf0e
 ```
 
+## Skype for Business
+### Webcam freezing after windows update
 
+*After the anniversary update Microsoft dropped support for MJPEG and H264 encoding standards to move towards YUY2 encoding for performance. The change lead to an issue that Webcams that use MJPEG or H264 would not work correctly. This issue then came up again after an later update as well*
+
+To resolve add the registries, then re-open the affected app or restart pc.
+
+```
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0 /f
+```
 
 
 
