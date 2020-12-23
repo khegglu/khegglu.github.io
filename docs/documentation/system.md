@@ -17,7 +17,7 @@ nav_order: 2
 
 ## Failed to encrypt C: - Bitlocker could not encrypt one or more drives on this computer. You will be reminded to encrypt this computer again.
 
-Generally this error is due to the Key protectors being missing, resolved by adding a key protector, then enabling bitlocker. The last feedback from the command should be that bitlocker with begin encrypting after doing a self hardware check.
+Generally this error is due to the Key protectors being missing, resolved by adding a key protector, then enabling bitlocker. The last feedback from the command should be that bitlocker will begin encrypting after doing a self hardware check.
 
 ```
 # manage-bde -status
