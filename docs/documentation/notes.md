@@ -21,10 +21,15 @@ nav_order: 1
 # Get the system disk space
 Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'" | Select-Object -Property DeviceID, DriveType, VolumeName, @{L='FreeSpaceGB';E={"{0:N2}" -f ($_.FreeSpace /1GB)}}, @{L="Capacity";E={"{0:N2}" -f ($_.Size/1GB)}}
 
+# Clear credential manager, ran as user
+cmdkey /list | ForEach-Object{if($_ -like "*Target:*" -and $_ -like "*"){cmdkey /del:($_ -replace " ","" -replace "Target:","")}}
 
+# Access user certificates
+rundll32.exe cryptui.dll,CryptUIStartCertMgr
+
+# Temporarily disable Symantec Antivirus
+start smc -stop
 ```
-
-
 
 ## Powershell:
 
@@ -34,6 +39,10 @@ Add-ADGroupMember -Identity 'newgroup' -Members (Get-ADGroupMember -Identity 'ol
 
 # Check if special password policy is applied on a account # If no result then the default domain policy applies: Get-ADDefaultDomainPasswordPolicy
 Get-ADUserResultantPasswordPolicy $user
+
+# Change domain computername
+Rename-Computer –computername OldName –newname NewName –domaincredential Domain\Admin_User –force –restart
+
 
 
 ```
