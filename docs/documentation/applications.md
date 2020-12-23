@@ -16,6 +16,21 @@ nav_order: 3
 ---
 
 ## Browsers
+### Internet Explorer: This website wants to install the following add-on "crystal report activex viewer control"
+
+> The: ActiveXViewer.cab file needs to be downloaded from the source
+> http://yourwebsitewherecrystalisinstalled/crystalreportviewers11/ActiveXControls/ActiveXViewer.cab
+
+Extract ActiveXViewer.cab to a folder on the machine, then manually register the .DLL's, restart browser and access the page again.
+
+```
+REGSVR32 /S CRVIEWER.DLL
+REGSVR32 /S REPORTPARAMETERDIALOG.DLL
+REGSVR32 /S SVIEWHLP.DLL
+REGSVR32 /S SWEBRS.DLL
+```
+
+
 ### Internet Explorer: DLG_FLAGS_INVALID_CA
 
 This error is due to issues regarding Zscaler's root CA certificate, this needs to be downloaded and installed again as per KB0458729.
