@@ -51,6 +51,15 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main" /v Disabl
 ## Installs:
 
 ```
+# Get SID's on computer
+Reg Query 'HKEY_USERS'
+
+# Get reg detals for apps installed in users profile
+Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion\uninstall\"
+
+```
+
+```
 # Silent install of MSODBCSQL
 msiexec /i C:\Packages\msodbcsql_17.5.2.1_x64.msi /qn ADDLOCAL=ALL IACCEPTMSODBCSQLLICENSETERMS=YES
 
