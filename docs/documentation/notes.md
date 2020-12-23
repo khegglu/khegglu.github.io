@@ -15,4 +15,48 @@ nav_order: 1
 
 ---
 
+## System:
+
+```
+# Get the system disk space
+Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'" | Select-Object -Property DeviceID, DriveType, VolumeName, @{L='FreeSpaceGB';E={"{0:N2}" -f ($_.FreeSpace /1GB)}}, @{L="Capacity";E={"{0:N2}" -f ($_.Size/1GB)}}
+
+
+```
+
+
+
+## Powershell:
+
+```
+# Clone group membership from 1 AD group to another
+Add-ADGroupMember -Identity 'newgroup' -Members (Get-ADGroupMember -Identity 'oldgroup' -Recursive)
+
+# Check if special password policy is applied on a account # If no result then the default domain policy applies: Get-ADDefaultDomainPasswordPolicy
+Get-ADUserResultantPasswordPolicy $user
+
+
+```
+
+## Registry:
+
+```
+# Get Windows 10 OS version
+(Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").ReleaseId
+
+# Disable flash EOL notification message in Internet Explorer, plugin will be removed at the end of next year.
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main" /v DisableFlashNotificationPolicy /t REG_DWORD /d 1 /f
+```
+
+## Installs:
+
+```
+# Silent install of MSODBCSQL
+msiexec /i C:\Packages\msodbcsql_17.5.2.1_x64.msi /qn ADDLOCAL=ALL IACCEPTMSODBCSQLLICENSETERMS=YES
+
+# Silent install of SQLNC
+msiexec /i C:\Packages\sqlncli.msi /qn ADDLOCAL=ALL IACCEPTSQLNCLILICENSETERMS=YES
+
+```
+
 
