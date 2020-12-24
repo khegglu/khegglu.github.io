@@ -89,7 +89,7 @@ This feature was by default hidden after a security update, it can be enabled th
 ```
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Outlook\Security" /v EnableUnsafeClientMailRules /t REG_DWORD /d 1 /f
 ```
-### "The Delegates settings were not saved correctly. Unable to activate send-on-behalf-of list. You do not have sufficient permission to perform this operation on this object."
+### The Delegates settings were not saved correctly. Unable to activate send-on-behalf-of list. You do not have sufficient permission to perform this operation on this object.
 *This error can occur when the Delegates list contains a mailbox user who no longer exists in the organization. To fix the error remove the non-existent user from the Delegates list before you attempt to add other Delegates or change the Delegates settings.*
 
 The first command is to check the attribute, the next following 2 are either to clear a specific inactive user or to remove them all.
@@ -98,6 +98,23 @@ Get-ADUser $user -Properties publicDelegates | Select-Object -ExpandProperty pub
 
 Set-ADUser -Remove @{PublicDelegates="UID"}
 Set-ADUser -clear PublicDelegates
+```
+
+### Items deleted in a shared mailbox goes to the users deleted items instead of the shared mailbox deleted items.
+
+This option can be changed through the user registries. By default the key is set to 8, to store deleted items in the mailbox it was deleted from the key needs to be set to 4.
+
+```
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\XX.0\Outlook\Options\General" /v DelegateWastebasketStyle /t REG_DWORD /d 4 /f
+```
+
+### HTTPS linked images in HTML emails display the red X: "The linked image cannot be displayed.  The file may have been moved, renamed, or deleted.  Verify that the link points to the correct file.
+
+This problem occurs when the Internet Explorer Security setting Do not save encrypted pages to disk option is enabled. This can be disabled per user or system wide.
+
+```
+reg add "HKEY_CURRENT_USER\software\microsoft\windows\CurrentVersion\Internet Settings" /v DisableCachingOfSSLPages /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\software\microsoft\windows\CurrentVersion\Internet Settings" /v DisableCachingOfSSLPages /t REG_DWORD /d 0 /f
 ```
 
 
