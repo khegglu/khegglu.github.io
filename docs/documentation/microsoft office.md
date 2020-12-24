@@ -117,6 +117,34 @@ reg add "HKEY_CURRENT_USER\software\microsoft\windows\CurrentVersion\Internet Se
 reg add "HKEY_LOCAL_MACHINE\software\microsoft\windows\CurrentVersion\Internet Settings" /v DisableCachingOfSSLPages /t REG_DWORD /d 0 /f
 ```
 
+### Issues when trying to open email attachments
+
+Try to clear the users outlook temp folder and see if that resolves the issue
+
+```
+Remove-Item "$env:localappdata\Temporary Internet Files\Content.Outlook\" -confirm:$false -recurse
+```
+
+### Search indexing stuck and wont rebuild
+
+By default windows search is responsible for search within outlook, we have had some cases where this have not been functioning properly and with the changes here we can change the search feature over to outlooks own built-in search. This works better for some users in our environment.
+
+```
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v PreventIndexingOutlook /t REG_DWORD /d 1 /f
+```
+
+### Email list autocomplete not working
+
+*autocomplete cache has a limit of 1000 entries, after that it starts dropping email addresses off as you add new ones and sometimes fails to add new ones*
+
+The commands will clear the email cache locally and on the server side, then the affected user can test and see how the autofill runs.
+
+```
+Remove-Item "$env:userprofile\AppData\Local\Microsoft\Outlook\RoamCache\Stream_Autocomplete*" -confirm:$false
+Outlook /cleanautocompletecache
+```
+
+*The cache will only repopulate with the addresses you actually send emails to, if you just load users in the "To" field and close the mail then the addresses will stick until you close outlook and then disappear from cache.*
 
 ## Excel:
 ### App v16.0.4978.1000 crashing with error reference to chart.dll
@@ -138,6 +166,72 @@ Faulting application start time: 0x01d6bc44e1f3dcfd
 Faulting application path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE
 Faulting module path: C:\Program Files\Microsoft Office\Office16\chart.dll
 Report Id: 91239ca4-9421-40c5-9383-ee093ae9cf0e
+```
+
+### App v15.0.5233.1000 spreadsheets with macros crashing with error reference to gdi32full.dll
+
+Not sure under what circumstances this issue is triggered but this case was on a Windows 10 v/1809 machine. Issue relates to some windows update released by microsoft, and is resolved by installing a patch based on the OS version.
+
+- [Reference Article](https://kb.parallels.com/en/125027)
+
+- [Windows 10 v1909 - KB4567512 Download](http://download.windowsupdate.com/c/msdownload/update/software/updt/2020/06/windows10.0-kb4567512-x64_2ea636c671529de2154d48a1181c0f02cd919da5.msu)
+- [Windows 10 v1809 - KB4567513 Download](http://download.windowsupdate.com/c/msdownload/update/software/updt/2020/06/windows10.0-kb4567513-x64_64dba2ab8d4335fe82a5494bed86f20fd0de3b37.msu)
+
+```
+Faulting application name: EXCEL.EXE, version: 15.0.5233.1000, time stamp: 0x5e76d6d3
+Faulting module name: gdi32full.dll, version: 10.0.17763.1282, time stamp: 0xf9833b72
+Exception code: 0xc0000005
+Fault offset: 0x0000000000079de0
+Faulting process id: 0x72c
+Faulting application start time: 0x01d64df834c8d737
+Faulting application path: C:\Program Files\Microsoft Office\Office15\EXCEL.EXE
+Faulting module path: C:\WINDOWS\System32\gdi32full.dll
+Report Id: 56c03d41-c5b7-4561-952e-2d6a64c7d8df
+```
+
+### This file cannot be previewed because there is no previewer installed for it.
+
+This issue is supposedly caused by some Office 2016 patch, there were some machines that had some software changes which caused the fix to never get installed so on these machines the reg key value {00020827-0000-0000-C000-000000000046} did exist, but the registry type was set to REG_EXPAND_SZ and was pointing to a .dll file in the Office16 common files folder. Resolved by creating the key with the proper values
+
+```
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\PreviewHandlers" /v "{00020827-0000-0000-C000-000000000046}" /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\PreviewHandlers" /v "{00020827-0000-0000-C000-000000000046}" /t REG_SZ /d "Microsoft Excel previewer" /f
+```
+
+### Smart View: http session timeouts
+
+The session settings are set per user, this isssue is generally resolved by increasing the timeout time. The changes below is to set the timeout timer to 900000 ms which is 15 minutes
+
+```
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ReceiveTimeout /t REG_DWORD /d 900000 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v KeepAliveTimeout /t REG_DWORD /d 900000 /f
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ServerInfoTimeout /t REG_DWORD /d 900000 /f
+```
+
+### Wont open files from shared drive, displays blank page
+
+Have not found an official fix for this issue, but we can work around it by closing all office apps and then renaming the user settings folder. When a office app is then opened then a new settings folder is created with the software defaults.
+
+```
+cmd /c 'TASKKILL /F /IM outlook.exe & TASKKILL /F /IM lync.exe & TASKKILL /F /IM winword.exe & TASKKILL /F /IM excel.exe & TASKKILL /F /IM powerpnt.exe & TASKKILL /F /IM msaccess.exe & TASKKILL /F /IM onenote.exe & TASKKILL /F /IM groove.exe & TASKKILL /F /IM visio.exe & TASKKILL /F /IM winproj.exe & TASKKILL /F /IM MSOSYNC.EXE & TASKKILL /F /IM Teams.exe'
+Rename-Item "$env:LOCALAPPDATA\Microsoft\Office" "$env:LOCALAPPDATA\Microsoft\Office.old"
+```
+
+### Application freeze when copying data from spreadsheet to spreadsheet
+
+Difficult to tell exactly why this happens, it can be when copying a lot or a tiny amount of date from experience. There are a bunch of settings that can be tweaked which i have found to help a lot with the spreadsheet performance.
+
+```
+Options > General > User Interface options > enable live preview | untick the option
+Options > Advanced > Cut, copy, and paste > Show Paste Options button when content is pasted | untick the option
+Options > Advanced > Cut, copy, and paste > Show Insert Options buttons | untick the option
+Options > Advanced > Cut, copy, and paste > Cut, copy, and sort inserted objects with their parent cells | untick the option
+Options > Advanced > display > disable hardware graphics acceleration | tick the option
+
+Options > Trust Center > Trust Center Settings > Protected View > untick everything
+Options > Trust Center > Trust Center Settings > Macro Settings | make sure disable all macros with notification is ticked
+Options > Trust Center > Trust Center Settings > Macro Settings > Trust access to the VBA project object model | tick the option
+Options > Trust Center > Trust Center Settings > ActiveX Settings | make sure prompt me before enabling all controls with minimal restrictions is ticked
 ```
 
 ## OneNote:
@@ -165,7 +259,18 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Media Foundation\Platform
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0 /f
 ```
 
+## Office
+### Disable Office Sync Tool
 
+The only way to stop this tool from running on boot is to remove the user registries under run.
+
+```
+# Disable the sync tool
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V OfficeSyncProcess /F
+
+# Re-enable the sync tool - 2013
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v OfficeSyncProcess /t REG_SZ /d "\"C:\Program Files\Microsoft Office\Office15\MSOSYNC.EXE"\" /f
+```
 
 
 
