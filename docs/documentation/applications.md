@@ -79,4 +79,12 @@ This issue was resolved by removing the session.xml from the users profile, then
 Remove-Item "C:\Users\$env:username\AppData\Roaming\Notepad++\session.xml" -confirm:$false
 ```
 
+### Anixis PPE - Password Policy Enforcer - Unable to change password while on VPN
+
+*The server SERVERXX.domain.com did not respond (10060). Make sure this server is running PPE V9.0 or later and UDP Port 1333 is not blocked by a firewall.*
+
+> Vendor confirmed that the Anixis tool requires a open port to a DC, either there is none set up or there is some issue with connectivity towards the DC.
+
+
+
 
