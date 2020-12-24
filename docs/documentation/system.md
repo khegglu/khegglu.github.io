@@ -15,7 +15,8 @@ nav_order: 2
 
 ---
 
-## Failed to encrypt C: - Bitlocker could not encrypt one or more drives on this computer. You will be reminded to encrypt this computer again.
+## Bitlocker:
+### Failed to encrypt C: - Bitlocker could not encrypt one or more drives on this computer. You will be reminded to encrypt this computer again.
 
 Generally this error is due to the Key protectors being missing, resolved by adding a key protector, then enabling bitlocker. The last feedback from the command should be that bitlocker will begin encrypting after doing a self hardware check.
 
@@ -25,6 +26,103 @@ Add-BitLockerKeyProtector -MountPoint 'C:' -RecoveryPasswordProtector
 manage-bde -on C: -RecoveryPassword
 ```
 
+### Keeps asking for recovery key after every reboot
+
+*After using a recovery key the protection needs to be suspended and resumed, otherwise it will ask for the recovery key on every reboot of the machine*
+
+```
+manage-bde.exe -protectors -disable c:
+manage-bde.exe -protectors -enable c:
+```
+
+### The TPM is defending against dictionary attacks and is in a time-out period.
+
+```
+# To clear the TPM, when rebooting the machine the user needs to confirm on screen
+Initialize-Tpm -AllowClear -AllowPhysicalPresence
+```
+
+## The Group Policy Client service failed the logon. Access is denied.
+
+Issue due to corrupt user registries for the affected user, proceed to remove the users profile in the registry and rename the users folder.
+
+## Disable offline files
+
+```
+Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Services\CscService" -Name "Start" -Value 1
+Stop-Service CscService
+Set-Service CscService -StartupType Disabled
+reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Csc\Parameters /v FormatDatabase /t REG_DWORD /d 1 /f
+```
+
+## Unable to map shared drive in windows 10, offline files is off
+
+```
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Mup\Parameters" /v EnableDfsLoopbackTargets /t REG_DWORD /d 1 /f
+```
+
+## Network drives disappearing
+By default windows 10 will drop idle connections after a specified time-out period.
+Open cmd as administrator and use the command below to turn the auto-disconnect feature off.
+> net config server /autodisconnect:-1
+
+## This share requires the obsolete SMB1 protocol
+
+*As of a Windows 10 v1709 update the SMBv1 protocol is by default not installed, this is due to security and vulnerability issues. You will see this error if you are trying to connect to a share that is hosted on windows server 2003, or newer where they are not using SMBv2(2008) or SMBv3(2012).*
+
+The error can be bypassed by enabling the protocol again.
+
+```
+Set-SmbServerConfiguration –EnableSMB1Protocol $true
+```
+
+## There is a problem with your Remote Desktop license, and your session will be disconnected in 60 minutes, Contact your system administrator
+
+To resolve, remove the registry key that stores the RDS license. A new key should be generated once this has been removed.
+
+```
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing" /f
+```
+
+## Windows 10 machine going to sleep exactly 2 mins after the screen has been locked
+
+After some research the registry power option "System Unattended Sleep Timout" was discovered, this setting by default is set to 2 minutes matching the problem description. It's an issue that has affected only a few machines, so not sure what changed to start enforcing that policy.
+
+```
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0" /v Attributes /t REG_DWORD /d 2 /f
+```
+
+After adding the key, open advance power settings and set the option: "System Unattended Sleep Timout" from it's 2 minutes to 0 to disable the feature.
+
+```
+Root: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerSettings\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0\DefaultPowerSchemeValues
+
+In that location there are 3 system power options
+381b4222-f694-41f0-9685-ff5bb260df2e
+8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+a1841308-3541-4fab-bc81-f71556f20b4a
+
+Containing the keys:
+AcSettingIndex REG_DWORD 0x78
+DcSettingIndex REG_DWORD 0x78
+
+That 0x78 hex translates to 120 which is milliseconds so the 2 minute default timer. Making that change I did on the the users machine did not adjust those keys.
+
+There is then a "User" section in HKLM you can pick from in the power options so I did a:
+reg query 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powerschemes'
+
+On mine and and the users machine it shows that we are both using the same ActivePowerScheme: 381b4222-f694-41f0-9685-ff5bb260df2e - So this key seems to be shared for everyone since it is based in HKLM.
+
+So on my machine the "238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0" does not exist since I haven't done anything with that setting, but on the users machine you see: 
+reg query 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powerschemes\381b4222-f694-41f0-9685-ff5bb260df2e\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0'
+DCSettingIndex REG_DWORD 0x0
+ACSettingIndex REG_DWORD 0x0
+
+So if it will be needed there can be made a policy to create those 2 keys in that specific one or all the 3 power schema shown which should apply to all the users.
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powerschemes\381b4222-f694-41f0-9685-ff5bb260df2e\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0" /v DCSettingIndex /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powerschemes\381b4222-f694-41f0-9685-ff5bb260df2e\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0" /v ACSettingIndex /t REG_DWORD /d 0 /f
+```
 
 ## GET-WMIOBJECT : Invalid class "WIN32_VOLUME"
 
