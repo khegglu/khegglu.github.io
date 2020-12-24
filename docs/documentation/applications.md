@@ -70,6 +70,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f
 ```
 
+## Applications
+### Notepad++ "When starting app it is not responding"
 
+This issue was resolved by removing the session.xml from the users profile, then it should work once you open the app again.
+
+```
+Remove-Item "C:\Users\$env:username\AppData\Roaming\Notepad++\session.xml" -confirm:$false
+```
 
 
