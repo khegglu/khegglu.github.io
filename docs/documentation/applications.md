@@ -46,6 +46,25 @@ This error is generally resolved by quickly re-installing google chrome, in our 
 HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\KeyID
 ```
 
+### Google Chrome/Firefox: To export a list you must have a Microsoft SharePoint Foundation compatible application
+
+This is an error message you will receive if you are trying to export sharepoint lists in firefox/chrome, this is due that both these browsers doesn't support ActiveX controls which is used in sharepoint 2013 to validate if you have excel installed, this controller is called SpreadSheetLauncher. For this feature use Internet Explorer.
+
+### Google Chrome: corrupt user profile
+
+```
+Rename-Item "$env:LOCALAPPDATA\Google\Chrome\User Data\Default" "$env:LOCALAPPDATA\Google\Chrome\User Data\Default.old" -confirm:$false
+Copy-Item "$env:LOCALAPPDATA\Google\Chrome\User Data\Default.old\bookmarks" "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\" -confirm:$false
+```
+
+### Google Chrome: displays window in all white or black
+
+Open run and paste in the command below, if it runs sucessfully update the graphics driver on the computer
+
+```
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-gpu
+```
+
 ## Java
 ### The following resource is signed with a weak signature algorithm MD5withRSA and is treated as unsigned.
 
