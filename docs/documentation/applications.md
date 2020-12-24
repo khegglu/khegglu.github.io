@@ -46,6 +46,30 @@ This error is generally resolved by quickly re-installing google chrome, in our 
 HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\KeyID
 ```
 
+## Java
+### The following resource is signed with a weak signature algorithm MD5withRSA and is treated as unsigned.
+
+As of java 8u131 applications signed with MD5withRSA/DSA algorithms are treated as unsigned. To bypass this modify the java.security file in the program files folder to still allow the algorithm.
+
+```
+((Get-Content -path "C:\Program Files (x86)\Java\jre1.8.*\lib\security\java.security") -replace 'jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024','#jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024') | Set-Content -Path "C:\Program Files (x86)\Java\jre1.8.*\lib\security\java.security"
+```
+
+### Can not verify Deployment Rule Set jar due to certificate expiration
+
+```powershell
+remove-item 'C:\Windows\Sun\Java\Deployment\DeploymentRuleSet.jar' -confirm:$false -force
+```
+
+### Disable java update prompt
+
+
+
+```
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v NotifyDownload /t REG_DWORD /d 0 /f
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f
+```
+
 
 
 
