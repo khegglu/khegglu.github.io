@@ -259,6 +259,35 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Media Foundation\Platform
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows Media Foundation\Platform" /v EnableFrameServerMode /t REG_DWORD /d 0 /f
 ```
 
+### No emoji icons visible, the IM is just blank with rectangle box
+
+*When users send emojis, they do not see the emoji or receive it from others.
+
+```
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.0\Lync" /v DisableRicherEditCanSetReadOnly /t REG_DWORD /d 1 /f
+```
+
+### Precense icons in outlook not working
+
+```
+reg add "HKEY_CURRENT_USER\SOFTWARE\IM Providers" /v DefaultIMApp /d Lync /f
+```
+
+### Skype meeting button missing in outlook calendar
+
+Resolved by clearing the users office registry key, any manual changes done in the registry to try and force the plugin to load for some reason does not work. This will reset all the user settings for Office.
+
+```
+reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office" /f
+```
+
+### App crashing when you click on the toaster notification for any new IM or incoming calls
+
+*Issue appeared after KB4011159 - resolved by installing one of the patches here*
+
+- [Microsoft Office 2016 KB4011631 Download](https://download.microsoft.com/download/E/3/6/E36DCF64-73A4-430E-9E5B-107CE49F714F/msodll40ui2016-kb4011631-fullfile-x64-glb.exe)
+- [Microsoft Office 2016 KB4011099 Download](https://download.microsoft.com/download/B/A/1/BA1D3A64-F1AD-49AB-B80E-2D8367D8ACBB/msodll40ui2016-kb4011099-fullfile-x64-glb.exe)
+
 ## Office
 ### Disable Office Sync Tool
 
