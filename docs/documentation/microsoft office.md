@@ -147,6 +147,24 @@ Outlook /cleanautocompletecache
 *The cache will only repopulate with the addresses you actually send emails to, if you just load users in the "To" field and close the mail then the addresses will stick until you close outlook and then disappear from cache.*
 
 ## Excel:
+### App v16.0.5026.1000 crashing when saving file with macro
+The issue is resolved by installing the appropiate patch or editing a user location registry key:
+
+- [Microsoft Excel 2016 - KB3085435 Download](https://download.microsoft.com/download/F/0/5/F05EABEE-70A2-423C-9F91-8AC3B5C65BB3/excel2016-kb3085435-fullfile-x64-glb.exe)
+- reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Excel\Options" /v ForceVBALoadFromSource /t REG_DWORD /d 1 /f
+
+```
+Faulting application name: EXCEL.EXE, version: 16.0.5026.1000, time stamp: 0x5ed683b7
+Faulting module name: VBE7.DLL, version: 7.1.10.97, time stamp: 0x5ea725f5
+Exception code: 0xc0000005
+Fault offset: 0x00000000001185ca
+Faulting process id: 0x2050
+Faulting application start time: 0x01d6c4cb8b20c758
+Faulting application path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE
+Faulting module path: C:\Program Files\Common Files\Microsoft Shared\VBA\VBA7.1\VBE7.DLL
+Report Id: faec6dbe-fc1f-4346-9356-12d750d16502
+```
+
 ### App v16.0.4978.1000 crashing with error reference to chart.dll
 The issue is caused by KB4018319 and is solved by installing the appropriate patch:
 
