@@ -148,7 +148,7 @@ Outlook /cleanautocompletecache
 
 ## Excel:
 ### App v16.0.5026.1000 crashing when saving file with macro
-The issue is resolved by installing the appropiate patch or editing a user location registry key:
+The issue is resolved by installing the appropiate patch or adding a user registry key:
 
 - [Microsoft Excel 2016 - KB3085435 Download](https://download.microsoft.com/download/F/0/5/F05EABEE-70A2-423C-9F91-8AC3B5C65BB3/excel2016-kb3085435-fullfile-x64-glb.exe)
 - reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Excel\Options" /v ForceVBALoadFromSource /t REG_DWORD /d 1 /f
