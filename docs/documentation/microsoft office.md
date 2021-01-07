@@ -147,6 +147,28 @@ Outlook /cleanautocompletecache
 *The cache will only repopulate with the addresses you actually send emails to, if you just load users in the "To" field and close the mail then the addresses will stick until you close outlook and then disappear from cache.*
 
 ## Excel:
+### App v16.0.4978.1000 crashing when saving file to sharepoint
+
+This issue appears with some files that are opened from sharepoint. This issue causes Excel 2016 to crash when you attempt to save the file, so the data gets lost instead of uploaded in to sharepoint.
+
+*Issue appears to be related to the patches KB3191922/KB3203477*
+
+The issue is resolved by installing the appropiate patch:
+
+- [Microsoft Office 2016 - KB3213549 Download](https://download.microsoft.com/download/C/E/3/CE33320D-1400-494F-91E9-14666FD5D979/mso2016-kb3213549-fullfile-x64-glb.exe)
+
+```
+Faulting application name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b  
+Faulting module name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b  
+Exception code: 0xc0000005  
+Fault offset: 0x00000000012d9fe9  
+Faulting process id: 0x3afc  
+Faulting application start time: 0x01d6ce279463d146  
+Faulting application path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE  
+Faulting module path: C:\Program Files\Microsoft Office\Office16\EXCEL.EXE  
+Report Id: 00135a9e-d418-4adf-9e1c-f27105d52a3b
+```
+
 ### App v16.0.5026.1000 crashing when saving file with macro
 The issue is resolved by installing the appropiate patch or adding a user registry key:
 
