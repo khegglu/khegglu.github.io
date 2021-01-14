@@ -84,15 +84,31 @@ Faulting application path: <C:\Program Files\Microsoft Office\Office16\OUTLOOK.E
 Faulting module path: <C:\Program Files\Microsoft Office\Office16\OUTLOOK.EXE>
 Report Id: 912141fa-54e5-430c-b8dd-adb8a914bfa7
 ```
+
+### Tables, images, and attachments are missing in the received meeting requests in Outlook 2013 (sent from Office 2016)
+*Assume that a meeting request that has table content, embedded images, and attachments is created in Microsoft Outlook 2016. Then, you receive the meeting request in Outlook 2013. In this situation, the tables, images, and attachments are missing or corrupted in the received meeting request.*
+
+Resolved by installing the patch or editing the user registry:
+
+- [Outlook 2013 KB3127975 Download](https://download.microsoft.com/download/6/1/5/615A5F76-7247-47BC-85BE-EB4CB30A05EF/outlook2013-kb3127975-fullfile-x64-glb.exe)
+
+```
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\15.0\Outlook\Options\Calendar" /v AllowHTMLCalendarContent /t REG_DWORD /d 1 /f
+```
+
 ### Email rule - run a script
 This feature was by default hidden after a security update, it can be enabled through the users registry.
+
 ```
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Outlook\Security" /v EnableUnsafeClientMailRules /t REG_DWORD /d 1 /f
 ```
+
 ### The Delegates settings were not saved correctly. Unable to activate send-on-behalf-of list. You do not have sufficient permission to perform this operation on this object.
+
 *This error can occur when the Delegates list contains a mailbox user who no longer exists in the organization. To fix the error remove the non-existent user from the Delegates list before you attempt to add other Delegates or change the Delegates settings.*
 
 The first command is to check the attribute, the next following 2 are either to clear a specific inactive user or to remove them all.
+
 ```
 Get-ADUser $user -Properties publicDelegates | Select-Object -ExpandProperty publicDelegates
 
