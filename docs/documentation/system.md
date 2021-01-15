@@ -124,6 +124,16 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powersch
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\User\Powerschemes\381b4222-f694-41f0-9685-ff5bb260df2e\238C9FA8-0AAD-41ED-83F4-97BE242C8F20\7bc4a2f9-d8fc-4469-b07b-33eb785aaca0" /v ACSettingIndex /t REG_DWORD /d 0 /f
 ```
 
+## Ghost/Duplicate printers not appearing in control panel
+
+```
+Open Notepad:
+- Click File, then Print
+- Scroll around to find the ghost or duplicate printer(s)
+- Select the ghost printer or duplicate printer and RIGHT CLICK
+- Select Delete and accept the deletion warning
+```
+
 ## GET-WMIOBJECT : Invalid class "WIN32_VOLUME"
 
 ```
