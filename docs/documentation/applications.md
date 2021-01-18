@@ -89,6 +89,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f
 ```
 
+## Citrix Reciever/WorkSpaceApp
+### The remote session was disconnected because there are no Terminal Service License Servers available to provide a license. Please contact your server administrator
+
+```
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing" /f
+```
+
 ## Applications
 ### Notepad++ "When starting app it is not responding"
 
