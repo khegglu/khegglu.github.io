@@ -89,6 +89,9 @@ Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""AccessRT""
 C:\Packages\AccessRuntime2016_x64_en-us.exe /extract:C:\Packages\AccessRuntime2016_x64_en-us\ /q
 C:\Packages\AccessRuntime2016_x64_en-us\setup.exe /config "C:\Packages\office.xml"
 Remove-Item "C:\packages\AccessRuntime2016_x64_en-us\" -Recurse -Confirm:$false
+
+## Silent install of NiceLabel-2019
+cmd /c 'C:\Packages\NiceLabel2019-BlueYonderVersionONLY.exe' /s LICENSECODE=1234567890 AUTOMATION=FALSE DESIGNER=TRUE RUNTIME=TRUE
 ```
 
 
