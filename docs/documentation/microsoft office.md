@@ -26,6 +26,12 @@ Excel: Power Pivot - Requires: Office 2013 professional plus and PowerBI Desktop
 
 get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\' -recurse | where {$_.name -like '*2016*'}
 cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\{F734ED03-43DA-4720-AB96-33739378FE9F}\cache\install.bat'
+
+
+Get-WmiObject win32_product |  Where-Object {$_.Name  -like "Microsoft Office Professional*" -or $_.Name  -like "Microsoft Office Standard*"} | Select-Object  Name,Version
+
+Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
+Get-EventLog -LogName Application -InstanceId 1000 -Newest 5 | Select-Object -ExpandProperty message
 ```
 
 ```
@@ -209,9 +215,6 @@ The issue is caused by KB4018319 and is solved by installing the appropriate pat
 - [Microsoft Office 2013 - KB2986229 Download](https://download.microsoft.com/download/B/9/9/B99D8FC5-569A-42F0-B0AD-089BB246C327/oart2013-kb2986229-fullfile-x64-glb.exe)
 - [Microsoft Office 2016 - KB4011128 Download](https://download.microsoft.com/download/1/A/6/1A69A731-CEC8-4D3F-BA81-0E801E8B0C7D/chart2016-kb4011128-fullfile-x64-glb.exe)
 
-```
-Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
-```
 ```
 Faulting application name: EXCEL.EXE, version: 16.0.4978.1000, time stamp: 0x5e451d6b
 Faulting module name: chart.dll, version: 16.0.4678.1000, time stamp: 0x5aa7ed63
