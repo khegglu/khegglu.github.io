@@ -248,6 +248,24 @@ Faulting module path: C:\WINDOWS\System32\gdi32full.dll
 Report Id: 56c03d41-c5b7-4561-952e-2d6a64c7d8df
 ```
 
+### App v15.0.5249.1000 spreadsheets from shared drive crashing when trying to open or save
+
+*When you open a document in Word, Excel, or PowerPoint 2013, a failure to open the document would occur repeatedly.*
+
+- [Windows 10 v1909 - KB3172545 Download](https://download.microsoft.com/download/C/7/5/C752F185-509E-470E-934E-90ACB996B695/csi2013-kb3172545-fullfile-x64-glb.exe)
+
+```
+Faulting application name: EXCEL.EXE, version: 15.0.5249.1000, time stamp: 0x5ebb2bed
+Faulting module name: EXCEL.EXE, version: 15.0.5249.1000, time stamp: 0x5ebb2bed
+Exception code: 0xc0000005
+Fault offset: 0x00000000001cdfc2
+Faulting process id: 0x2f5c
+Faulting application start time: 0x01d6f97841d69e29
+Faulting application path: C:\Program Files\Microsoft Office\Office15\EXCEL.EXE
+Faulting module path: C:\Program Files\Microsoft Office\Office15\EXCEL.EXE
+Report Id: bdf34643-593a-4acd-aec5-e7da65d9d940
+```
+
 ### This file cannot be previewed because there is no previewer installed for it.
 
 This issue is supposedly caused by some Office 2016 patch, there were some machines that had some software changes which caused the fix to never get installed so on these machines the reg key value {00020827-0000-0000-C000-000000000046} did exist, but the registry type was set to REG_EXPAND_SZ and was pointing to a .dll file in the Office16 common files folder. Resolved by creating the key with the proper values
@@ -291,6 +309,28 @@ Options > Trust Center > Trust Center Settings > Protected View > untick everyth
 Options > Trust Center > Trust Center Settings > Macro Settings | make sure disable all macros with notification is ticked
 Options > Trust Center > Trust Center Settings > Macro Settings > Trust access to the VBA project object model | tick the option
 Options > Trust Center > Trust Center Settings > ActiveX Settings | make sure prompt me before enabling all controls with minimal restrictions is ticked
+```
+
+## PowerPoint:
+### App v16.0.4266.1001  - powerpoints crashing with error reference to ppcore.dll
+
+*When you select the Font tab of the graph edit dialog box in an Office 2016 application, such as Word 2016, Excel 2016 or PowerPoint 2016, the Office 2016 application crashes.*
+
+The issue is resolved by installing one or both of these patches, the first one is the most likely candidate, the second update contains some security fixes that does apply an update to ppcore.dll as well. Not had the chance to test each of them individually yet.
+
+- [Windows 10 v1909 - KB4011211 Download](https://download.microsoft.com/download/2/0/9/2091826A-3C42-4771-980F-E865265EA00C/graph2016-kb4011211-fullfile-x64-glb.exe)
+- [Windows 10 v1909 - KB4011041 Download](https://download.microsoft.com/download/E/5/1/E5117530-5B8F-4D46-A65F-0E4BD3F4A0B5/powerpoint2016-kb4011041-fullfile-x64-glb.exe)
+
+```
+Faulting application name: POWERPNT.EXE, version: 16.0.4266.1001, time stamp: 0x55ba17c4
+Faulting module name: ppcore.dll, version: 16.0.4993.1001, time stamp: 0x5e452539
+Exception code: 0xc0000005
+Fault offset: 0x0000000000a58ffc
+Faulting process id: 0x3d7c
+Faulting application start time: 0x01d6f4ca9963e304
+Faulting application path: C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE
+Faulting module path: C:\Program Files\Microsoft Office\Office16\ppcore.dll
+Report Id: 1b25592f-68ab-4e0a-96f0-f65b2a1d538a
 ```
 
 ## OneNote:
