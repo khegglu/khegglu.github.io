@@ -30,8 +30,12 @@ cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Softwar
 
 Get-WmiObject win32_product |  Where-Object {$_.Name  -like "Microsoft Office Professional*" -or $_.Name  -like "Microsoft Office Standard*"} | Select-Object  Name,Version
 
+# Remote event logs:
 Get-EventLog -LogName Application -InstanceId 1000 -Message *EXCEL.exe* | Select-Object -ExpandProperty message
 Get-EventLog -LogName Application -InstanceId 1000 -Newest 5 | Select-Object -ExpandProperty message
+
+# Remote patch installs:
+cmd /c 'C:\Packages\csi2013-kb3172545-fullfile-x64-glb.exe' /passive /quiet
 ```
 
 ```
