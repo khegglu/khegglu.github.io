@@ -92,6 +92,10 @@ Remove-Item "C:\packages\AccessRuntime2016_x64_en-us\" -Recurse -Confirm:$false
 
 # Silent install of NiceLabel-2019
 cmd /c 'C:\Packages\NiceLabel2019-BlueYonderVersionONLY.exe' /s LICENSECODE=1234567890 AUTOMATION=FALSE DESIGNER=TRUE RUNTIME=TRUE
+
+# Silent install of Minitab Companion - demo version
+cmd /c 'c:\packages\companion5.5.1.0setup.exe' /exenoui /qn ACCEPT_EULA=1 DISABLE_UPDATES=1
+- https://www.minitab.com/content/dam/www/en/uploadedfiles/documents/install-guides/MinitabDeploymentGuide_en.pdf
 ```
 
 
