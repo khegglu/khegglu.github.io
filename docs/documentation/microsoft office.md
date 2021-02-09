@@ -316,7 +316,7 @@ Options > Trust Center > Trust Center Settings > ActiveX Settings | make sure pr
 ```
 
 ## PowerPoint:
-### App v16.0.4266.1001  - powerpoints crashing with error reference to ppcore.dll
+### App v16.0.4266.1001 powerpoints crashing with error reference to ppcore.dll
 
 *When you select the Font tab of the graph edit dialog box in an Office 2016 application, such as Word 2016, Excel 2016 or PowerPoint 2016, the Office 2016 application crashes.*
 
@@ -335,6 +335,18 @@ Faulting application start time: 0x01d6f4ca9963e304
 Faulting application path: C:\Program Files\Microsoft Office\Office16\POWERPNT.EXE
 Faulting module path: C:\Program Files\Microsoft Office\Office16\ppcore.dll
 Report Id: 1b25592f-68ab-4e0a-96f0-f65b2a1d538a
+```
+
+## Visio
+### App v15.0 "Please wait while Windows configures Microsoft Visio Professional 2013"
+
+In this case the app was running perfectly fine as another user, if that is the case then the issue will be in the specific users classes root registries. Check and change the setting accordingly and the configuration prompt will stop.
+
+```
+Issue was .vsdx was set to "vsdx_auto_file" instead of "Visio.Drawing.15"
+
+Computer\HKEY_CLASSES_ROOT\.vsd - (Default) - Visio.Drawing.11
+Computer\HKEY_CLASSES_ROOT\.vsdx - (Default) - Visio.Drawing.15
 ```
 
 ## OneNote:
