@@ -15,6 +15,16 @@ nav_order: 5
 
 ---
 
+## HP Machines:
+### Intel Management Engine related functionality will be unavailable. Please install the latest version of Intel Management Engine firmware to complete full recovery.
+
+*NOTE: The above message is a false error. There is nothing wrong with the computer, nor the hardware and software installed.*
+
+Issue appears to be related to bios or other hardware settings. One reference article indicates that the issue can be resolved with bios update, this is confirmed further through some posts on the support forums. The second article indicates that potentially there could be issues with the size of the EFI partition.
+
+- [Reference article](https://support.hp.com/my-en/document/c06466020)
+- [Reference article](https://support.hp.com/au-en/document/c06466416)
+
 ## Docking Station:
 ### HP USB-C Dock G4, G5 - Resolution Issues on External Monitor(s) While Docked
 
