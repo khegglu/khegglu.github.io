@@ -34,7 +34,7 @@ To bypass the following feature needs to be enabled in the BIOS:
 
 - "Enable High Resolution mode when connected to a USB-C DP alt mode dock"
 
-[Reference article](https://support.hp.com/us-en/document/c06575423)
+- [Reference article](https://support.hp.com/us-en/document/c06575423)
 
 ### HP 2013 UltraSlim Docking Station - Screen resolution issues with 2x DisplayPort's in use
 
