@@ -365,7 +365,7 @@ cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE15\Office Setup Co
 ## SharePoint Designer 2013
 ### Server-side activities have been updated. You need to restart SharePoint Designer to use the updated version of activities.
 
-*When you try to create a SharePoint 2013 workflow in SharePoint Designer 2013 on a computer that has Microsoft.Activities.dll installed, you receive the following error message*
+*When you try to create a SharePoint 2013 workflow in SharePoint Designer 2013 on a computer that has Microsoft.Activities.dll installed, you receive the following error message.*
 
 The application doesn't need to have everything installed in a specific order, but SP1 and KB3114337 are mandatory. After KB3114337 is installed, the cache needs to be completely cleared.
 
