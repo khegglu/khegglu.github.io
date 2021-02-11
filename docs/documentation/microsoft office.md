@@ -27,7 +27,7 @@ Excel: Power Pivot - Requires: Office 2013 professional plus and PowerBI Desktop
 get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\' -recurse | where {$_.name -like '*2016*'}
 cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\{F734ED03-43DA-4720-AB96-33739378FE9F}\cache\install.bat'
 
-Cscript.exe "C:\Packages\OffScrub_O15msi.vbs” ALL /Quiet /NoCancel /Force /OSE
+Cscript.exe "C:\Packages\OffScrub_O15msi.vbs" ALL /Quiet /NoCancel /Force /OSE
 
 Get-WmiObject win32_product |  Where-Object {$_.Name  -like "Microsoft Office Professional*" -or $_.Name  -like "Microsoft Office Standard*"} | Select-Object  Name,Version
 
