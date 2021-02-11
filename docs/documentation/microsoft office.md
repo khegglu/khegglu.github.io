@@ -362,6 +362,28 @@ Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""Standard""
 cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller\setup.exe" /repair Standard /config c:\packages\office.xml'
 ```
 
+## SharePoint Designer 2013
+### Server-side activities have been updated. You need to restart SharePoint Designer to use the updated version of activities.
+
+*When you try to create a SharePoint 2013 workflow in SharePoint Designer 2013 on a computer that has Microsoft.Activities.dll installed, you receive the following error message*
+
+The application doesn't need to have everything installed in a specific order, but SP1 and KB3114337 are mandatory. After KB3114337 is installed, the cache needs to be completely cleared.
+
+- [SharePoint Designer 2013 Download](https://download.microsoft.com/download/3/E/3/3E383BC4-C6EC-4DEA-A86A-C0E99F0F3BD9/sharepointdesigner_64bit.exe)
+- [SP1 KB2817441 Download](https://download.microsoft.com/download/F/C/7/FC7EC278-E333-450B-89AF-4F9640E73D62/spdsp2013-kb2817441-fullfile-x64-en-us.exe)
+- [KB2863836 Download](https://download.microsoft.com/download/9/D/A/9DA5C7EB-8BEA-45B4-A055-D5977B497017/spd2013-kb2863836-fullfile-x64-glb.exe)
+- [KB3114337 Download](http://download.windowsupdate.com/d/msdownload/update/software/crup/2016/01/spd-x-none_7c1009a5a70cac8d7012a44d2710faf79d7d7fb5.cab)
+- [KB3114721 Download](https://download.microsoft.com/download/6/2/3/623ABAA1-836E-4BBC-BDC5-F7DF8BA589F8/spd2013-kb3114721-fullfile-x64-glb.exe)
+
+```
+# C:\Users\*\appdata\roaming\microsoft\SharePoint Designer\ProxyAssemblyCache
+Get-ChildItem -Path "C:\Users\*\appdata\roaming\microsoft\SharePoint Designer\ProxyAssemblyCache" -recurse -Force | remove-item -confirm:$false -recurse -Force -ErrorAction SilentlyContinue
+# C:\Users\*\appdata\Roaming\Microsoft\Web Server Extensions\Cache
+Get-ChildItem -Path "C:\Users\*\appdata\Roaming\Microsoft\Web Server Extensions\Cache" -recurse -Force | remove-item -confirm:$false -recurse -Force -ErrorAction SilentlyContinue
+# C:\Users\*\appdata\local\microsoft\websitecache
+Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -Force | remove-item -confirm:$false -recurse -Force -ErrorAction SilentlyContinue
+```
+
 ## Skype for Business
 ### Webcam freezing after windows update
 
