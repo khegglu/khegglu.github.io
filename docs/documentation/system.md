@@ -16,6 +16,28 @@ nav_order: 2
 ---
 
 ## Bitlocker:
+### Cannot retrieve recovery password information. Size limit for the request has been exceeded. (Active Directory)
+
+This was a issue that presented itself on a newly reimaged device, the old object in AD was just re-established and it kept all the old childobjects. There must have been some issue with bitlocker at some point since the attribute on this machine displayed 1200+ recovery keys, issue was resolved by clearing these and syncing the new key.
+
+Forums indicated that this issue is more likely to occur on machines where they use a lot of USB-sticks that is being encrypted.
+
+```
+# Computer with the issue
+$computer = Get-ADComputer GBXXXWNX3X00000$
+# Command to pull the existing list and print to screen
+Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase $computer.DistinguishedName -Properties whenCreated, msFVE-RecoveryPassword | Sort whenCreated -Descending | Select whenCreated, msFVE-RecoveryPassword
+# Command to pull the existing list and remove the child objects
+Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase $computer.DistinguishedName -Properties whenCreated, msFVE-RecoveryPassword | Remove-ADObject -confirm:$false
+
+# From the device force a resync to AD
+manage-bde -protectors -get c:
+manage-bde -protectors -adbackup c: -id '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}'
+# Alternative
+$BLV = Get-BitLockerVolume -MountPoint "C:"
+Backup-BitLockerKeyProtector -MountPoint "C:" -KeyProtectorId $BLV.KeyProtector[1].KeyProtectorId
+```
+
 ### Failed to encrypt C: - Bitlocker could not encrypt one or more drives on this computer. You will be reminded to encrypt this computer again.
 
 Generally this error is due to the Key protectors being missing, resolved by adding a key protector, then enabling bitlocker. The last feedback from the command should be that bitlocker will begin encrypting after doing a self hardware check.
