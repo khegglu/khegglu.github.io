@@ -68,6 +68,14 @@ Open run and paste in the command below, if it runs sucessfully update the graph
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-gpu
 ```
 
+### Update for Removal of Adobe Flash Player for Windows
+
+*Applying this update will remove Adobe Flash Player from your Windows device. After this update has been applied, this update cannot be uninstalled.*
+
+This patch is designed to remove the adobe flash player that is built in to Microsoft Edge and Internet Explorer, the patch will only remove the built in version and wont affect any other standalone installations.
+
+- [Windows 10 v1909 KB4577586 Download](http://download.windowsupdate.com/c/msdownload/update/software/updt/2020/10/windows10.0-kb4577586-x64_ec16e118cd8b99df185402c7a0c65a31e031a6f0.msu)
+
 ## Java
 ### The following resource is signed with a weak signature algorithm MD5withRSA and is treated as unsigned.
 
