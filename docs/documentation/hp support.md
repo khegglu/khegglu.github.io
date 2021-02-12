@@ -26,6 +26,10 @@ Issue appears to be related to bios or other hardware settings. One reference ar
 - [Reference article](https://support.hp.com/au-en/document/c06466416)
 
 ## Docking Station:
+### USB-C drivers
+
+- [HP USB-C Universal Dock Driver](https://ftp.hp.com/pub/softpaq/sp92501-93000/sp92798.exe)
+
 ### HP USB-C Dock G4, G5 - Resolution Issues on External Monitor(s) While Docked
 
 *The external monitor(s) connected to the dock may exhibit reduced resolution. This issue occurs when the maximum USB-C video throughput has been reached with the BIOS default settings.*
