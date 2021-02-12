@@ -316,6 +316,17 @@ Options > Trust Center > Trust Center Settings > Macro Settings > Trust access t
 Options > Trust Center > Trust Center Settings > ActiveX Settings | make sure prompt me before enabling all controls with minimal restrictions is ticked
 ```
 
+### Application error when trying to open an embedded .XLSX from a Word 2016 document
+
+*The server application, source file, or item cannot be found. Make sure the application is properly installed, and that it has not been deleted, moved, renamed, or blocked by policy.*
+
+```
+# Issue was .xlsx was set to "xlsx_auto_file" instead of "Excel.Sheet.12"
+Computer\HKEY_CLASSES_ROOT\.xlsx - (Default) - Excel.Sheet.12
+# Alternative
+HKEY_CURRENT_USER\SOFTWARE\Classes\.xlsx - (Default) - Excel.Sheet.12
+```
+
 ## PowerPoint:
 ### App v16.0.4266.1001 powerpoints crashing with error reference to ppcore.dll
 
