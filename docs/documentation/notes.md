@@ -72,6 +72,12 @@ Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion
 ```
 
 ```
+# Remote install of HP Drivers
+cmd /c 'c:\packages\sp107705.exe' -e -s
+cmd /c 'C:\SWSetup\SP107705\setup.exe' -s
+```
+
+```
 # Silent install of MSODBCSQL
 msiexec /i C:\Packages\msodbcsql_17.5.2.1_x64.msi /qn ADDLOCAL=ALL IACCEPTMSODBCSQLLICENSETERMS=YES
 
