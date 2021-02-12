@@ -31,12 +31,15 @@ REGSVR32 /S SWEBRS.DLL
 ```
 
 
-### Internet Explorer: DLG_FLAGS_INVALID_CA
+### Internet Explorer: DLG_FLAGS_INVALID_CA "Your PC doesn’t trust this website’s security certificate."
 
-This error is due to issues regarding Zscaler's root CA certificate, this needs to be downloaded and installed again as per KB0458729.
+*Because this site uses HTTP Strict Transport Security, you can’t continue to this site at this time.*
 
-- [Zscaler root CA Certificate](http://keyserver.dhl.com/pki/X3/ZscalerRootCertificate-2048-SHA256.crt)
-- [IE 11 Instructions](https://help.zscaler.com/zia/configuration-example-importing-zscaler-root-certificate-ie-11)
+This error is due to issues regarding Zscaler's root CA certificate, this needs to be downloaded and installed again.
+
+- [Zscaler root CA Certificate](http://keyserver.xxx.com/pki/X3/ZscalerRootCertificate-2048-SHA256.crt)
+
+Download the certificate. Double click it and install for user, then do the same and install for machine, and lastly restart Internet Explorer.
 
 ### Google Chrome: "The application has failed to start because its side-by-side configuration is incorrect."
 
