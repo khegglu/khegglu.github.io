@@ -99,6 +99,19 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v
 reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSLicensing" /f
 ```
 
+### WorkSpaceApp v1904: Unable to connect to the server. Contact your system administrator with the following error: SSL Error 47: The server sent an SSL alert: sslv3 alert handshake failure (alert number unavailable)
+
+*Note: Citrix has deprecated weak cryptography across the board. If the configurations on the backend is not updated to support one of the 3 supported strong cipher suites, you will not be able to connect.*
+
+- [Overview of the Crypto Kit updates in Citrix Workspace for Windows and Mac](https://support.citrix.com/article/CTX250104)
+
+```
+# At least one of these is required:  
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)  
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (0xc028)  
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (0xc013)
+```
+
 ## Applications
 ### Notepad++ "When starting app it is not responding"
 
