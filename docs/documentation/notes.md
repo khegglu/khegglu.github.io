@@ -90,7 +90,7 @@ cmd /c 'c:\packages\VNC-Server-6.7.2-Windows.exe' /qn REBOOT=ReallySuppress LICE
 # Silent install of VNC Viewer
 cmd /c 'c:\packages\VNC-Viewer-6.20.529-Windows.exe' /qn
 
-# Silent install of Access Runtime
+# Silent install of Access Runtime 2016
 Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""AccessRT"">`r`n<Display Level=""none"" CompletionNotice=""No"" SuppressModal=""Yes"" NoCancel=""Yes"" AcceptEula=""Yes"" />`r`n<Setting Id=""SETUP_REBOOT"" Value=""Never"" />`r`n</Configuration>"
 C:\Packages\AccessRuntime2016_x64_en-us.exe /extract:C:\Packages\AccessRuntime2016_x64_en-us\ /q
 C:\Packages\AccessRuntime2016_x64_en-us\setup.exe /config "C:\Packages\office.xml"
@@ -102,6 +102,9 @@ cmd /c 'C:\Packages\NiceLabel2019-BlueYonderVersionONLY.exe' /s LICENSECODE=1234
 # Silent install of Minitab Companion - demo version
 cmd /c 'c:\packages\companion5.5.1.0setup.exe' /exenoui /qn ACCEPT_EULA=1 DISABLE_UPDATES=1
 - https://www.minitab.com/content/dam/www/en/uploadedfiles/documents/install-guides/MinitabDeploymentGuide_en.pdf
+
+# Silent install of Plantronics Manager
+cmd /c 'C:\Packages\PlantronicsHubInstaller.exe' /install /quiet
 ```
 
 
