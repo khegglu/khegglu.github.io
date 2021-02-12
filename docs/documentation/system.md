@@ -64,6 +64,23 @@ manage-bde.exe -protectors -enable c:
 Initialize-Tpm -AllowClear -AllowPhysicalPresence
 ```
 
+### "Turn on Bitlocker" vanished for USB Drives
+
+- [Reference](https://docs.microsoft.com/answers/answers/160728/view.html)
+
+For Windows 10 v1909 the issue is caused by the patches: KB4577671/KB4586786 (removing the updates appears to work for now). An official fix has not been released as of yet!
+
+*Windows Engineering has decided to revert this change after finding out that several manufacturers are shipping USB Sticks with partitions marked as Active.*
+
+```
+Workaround 1:
+As already stated by JulianFloyd-5310, one solution is to delete the volume of the desired drive in Disk Managment and then creating a volume again. After that you need to plug the USB drive out and in again. The BitLocker option should show up in the context menu of the USB drive after that.
+
+Workaround 2:
+Another solution is done with diskpart. Use this solution if you want to keep the contents of your USB drive.
+Simply open a new cmd, type in diskpart and confirm adminprompt. In diskpart type in "list disk" and locate your USB drive. Select your USB drive with "select disk ###" (replace "###" with the desired number). Then type in "list partition" and select the primary partition with "select partition ###". After selecting both disk and partition, type in "inactive". Your drive should be set to inactive now and after plugging the USB stick out and in again, the BitLocker option should be available again.
+```
+
 ## The Group Policy Client service failed the logon. Access is denied.
 
 Issue due to corrupt user registries for the affected user, proceed to remove the users profile in the registry and rename the users folder.
