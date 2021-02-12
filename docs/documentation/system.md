@@ -226,6 +226,13 @@ reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsGetDiagn
 reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsRunInBackground /t REG_DWORD /d 2 /f
 ```
 
+## BSOD - Blue Screen of Death:
+### Stop Code: "PAGE_FAULT_IN_NONPAGED_AREA" - "Netwtw06.sys"
+
+*Netwtw06. sys is the Intel WiFi driver*
+
+The issue is solved by updating the Intel WLAN driver!
+
 
 
 
