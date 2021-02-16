@@ -80,11 +80,7 @@ reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E967-E
 
 *The language of this installation package is not supported by your system.*
 
-The error is related to language pack compatability.
-
-```
-
-```
+The error is related to language pack compatability. The confusion in our case was that this was not related to langauage in the installation package, but the language in the OS. This user had a secondary language "Swedish (Finnish)" that was noted in the windows setting as missing languagae pack. Removing this secondary language allowed the install to continue and finish.
 
 ### "The file {90160000-0011-1000-0000000FF1CE}-C\ProPlusWW.msi could not be found. Setup failed. Rolling back changes..."
 
