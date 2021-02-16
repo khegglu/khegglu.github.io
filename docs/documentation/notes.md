@@ -75,6 +75,10 @@ Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion
 # Remote software removal - test
 Start-Process  -Wait  -FilePath  "wmic"  -ArgumentList  "product where `"name like '%Adobe Reader%'`" call uninstall" -Hidden
 
+# Remote patch install/removal - test
+wusa.exe C:\Packages\windows10.0-kb4577586-x64_ec16e118cd8b99df185402c7a0c65a31e031a6f0.msu /quiet /norestart
+wusa.exe /uninstall /kb:123456 /quiet /norestart
+
 # Remote install of HP Drivers
 cmd /c 'c:\packages\sp107705.exe' -e -s
 cmd /c 'C:\SWSetup\SP107705\setup.exe' -s
