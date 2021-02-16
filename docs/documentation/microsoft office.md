@@ -411,6 +411,17 @@ Set-Content 'C:\Packages\office.xml' -value "<Configuration Product=""Standard""
 cmd /c '"C:\Program Files\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller\setup.exe" /repair Standard /config c:\packages\office.xml'
 ```
 
+### "We couldn't find a notebook at "https://url". A notebook usually has a table of contents file (*.onetoc or *.onetoc2)."
+
+This error was given for a onenote book that is hosted in a sharepoint site. Researching online they hint that the issue could be related to a sharepoint feature, but that seemed odd since it was working some days before. The user tested and ruled that out, what we found though was that this pc somehow had the windows 10 store onenote app, the file was then attempting to open with that app instead of the 2016 desktop application. Issue was resolved by removing the store app.
+
+```
+# Open CMD as the user
+Get-AppxPackage *OneNote* | Remove-AppxPackage
+# Alternative to try
+Under Site Collection Administrator > Site Collection features, locate "Limited-access user permission lockdown mode, and then select the "Deactivate" button."
+```
+
 ## SharePoint Designer 2013
 ### Server-side activities have been updated. You need to restart SharePoint Designer to use the updated version of activities.
 
