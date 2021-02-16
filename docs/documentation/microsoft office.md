@@ -76,6 +76,28 @@ reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E967-E
 reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E967-E325-11CE-BFC1-08002BE10318} /v UpperFilters /f
 ```
 
+### "Error 30054. Unable to run setup.exe, when triggering install scrip error code is given"
+
+*The language of this installation package is not supported by your system.*
+
+The error is related to language pack compatability.
+
+```
+
+```
+
+### "The file {90160000-0011-1000-0000000FF1CE}-C\ProPlusWW.msi could not be found. Setup failed. Rolling back changes..."
+
+This error seems to be related to something with the language packs, initally it was thought that this was related to a corrupt install package but that was ruled out quite fast. The users system was set to english, but there must have been some issue with how that was registered on it when it was changed from one of the other languages. We worked around the issue by tweaking the confiuration file that is provided in our install packages, adjusted to pick english as default instead of trying to detect primary language.
+
+```
+# Config.XML
+<AddLanguage Id="match" ShellTransform="yes"/>
+<AddLanguage Id="en-us" />
+# Edited to:
+<AddLanguage Id="en-us" ShellTransform="yes"/>
+```
+
 ## Outlook:
 ### App v16.0.4266.1001 crashing with emails that have attachments
 *Microsoft Outlook 2016 may crash when using the Symantec Endpoint Protection (SEP) Outlook Scanner Add-in. Uninstalling or disabling the Symantec add-in resolves the symptoms.*
