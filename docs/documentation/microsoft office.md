@@ -349,6 +349,25 @@ Faulting module path: C:\Program Files\Microsoft Office\Office16\ppcore.dll
 Report Id: 1b25592f-68ab-4e0a-96f0-f65b2a1d538a
 ```
 
+## Word:
+### App v16.0.5056.1000 unable to open or save Word documents
+
+The issue seems to be related to KB4011730 and is resolved by installing the patch KB4018295.
+
+- [KB4018295 Download](https://download.microsoft.com/download/1/8/8/188E5F6B-4B94-41FF-AD18-6A825C22F162/mso2016-kb4018295-fullfile-x64-glb.exe)
+
+```
+Faulting application name: WINWORD.EXE, version: 16.0.5056.1000, time stamp: 0x5f32dc1c
+Faulting module name: wwlib.dll, version: 16.0.5056.1000, time stamp: 0x5f32db69
+Exception code: 0xc000041d
+Fault offset: 0x0000000000c5796d
+Faulting process id: 0x3a94
+Faulting application start time: 0x01d6f88c19bb9971
+Faulting application path: C:\Program Files\Microsoft Office\Office16\WINWORD.EXE
+Faulting module path: C:\Program Files\Microsoft Office\Office16\wwlib.dll
+Report Id: 041752fd-0660-4989-b646-d38d3e19eeff
+```
+
 ## Visio
 ### App v15.0 "Please wait while Windows configures Microsoft Visio Professional 2013"
 
