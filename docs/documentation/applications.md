@@ -100,6 +100,14 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f
 ```
 
+### Viewing oracle app and getting: java.lang.ClassNotFoundException: oracle.forms.engine.Main
+
+The issue in our case affected the certificate store, which then errored out the java applet. Quickly solved by removing the cacerts file.
+
+```
+Remove-Item "C:\Program Files (x86)\Java\jre*\lib\security\cacerts" -confirm:$false -force
+```
+
 ## Citrix Reciever/WorkSpaceApp
 ### The remote session was disconnected because there are no Terminal Service License Servers available to provide a license. Please contact your server administrator
 
