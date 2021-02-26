@@ -68,10 +68,12 @@ Reg Query 'HKEY_USERS'
 
 # Get reg detals for apps installed in users profile
 Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion\uninstall\"
-
 ```
 
 ```
+# Install report from Event Logs
+Get-EventLog -LogName Application -InstanceId 1033 -Newest 1 | Select-Object -ExpandProperty message
+
 # Remote software removal - test
 Start-Process  -Wait  -FilePath  "wmic"  -ArgumentList  "product where `"name like '%Adobe Reader%'`" call uninstall" -Hidden
 
