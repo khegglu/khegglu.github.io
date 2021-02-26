@@ -63,6 +63,13 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main" /v Disabl
 ## Installs:
 
 ```
+# WMIC
+wmic product where "name='Tachomaster' and version='02.007.0053'" call uninstall
+wmic product where "Vendor like '%Autodesk%'" get Name
+wmic product where "Caption like '%Adobe%Flash%'" get Name
+```
+
+```
 # Get SID's on computer
 Reg Query 'HKEY_USERS'
 
