@@ -498,7 +498,12 @@ reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V 
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v OfficeSyncProcess /t REG_SZ /d "\"C:\Program Files\Microsoft Office\Office15\MSOSYNC.EXE"\" /f
 ```
 
+### Onedrive not running automatically
 
+```
+# CMD as the user
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /f /v "OneDrive" /t REG_SZ /d "\"%LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe\" /background"
+```
 
 
 
