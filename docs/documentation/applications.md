@@ -108,6 +108,23 @@ The issue in our case affected the certificate store, which then errored out the
 Remove-Item "C:\Program Files (x86)\Java\jre*\lib\security\cacerts" -confirm:$false -force
 ```
 
+## Cisco AnyConnect
+### Unable to change domain password in windows 10
+
+```
+Logon Denied
+Only one user session is allowed.
+%user% is already logged onto this machine.
+
+This user must log off of this machine before you can log on.
+```
+
+Issue is resolved by changing a registry key, unable to determine why this was and issue for just a few clients.
+
+```
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{B12744B8-5BB7-463a-B85E-BB7627E73002}" /v EnforceSingleLogon /t REG_DWORD /d 0 /f
+```
+
 ## Citrix Reciever/WorkSpaceApp
 ### The remote session was disconnected because there are no Terminal Service License Servers available to provide a license. Please contact your server administrator
 
