@@ -81,6 +81,8 @@ Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion
 # Install report from Event Logs
 Get-EventLog -LogName Application -InstanceId 1033 -Newest 1 | Select-Object -ExpandProperty message
 Get-WinEvent -FilterHashtable @{logname = ‘setup’} | Format-Table timecreated, message -AutoSize -Wrap
+# Other options
+Get-WinEvent -FilterHashtable @{logname = ‘Application’; ProviderName='Windows Error Reporting';} | Format-Table timecreated, message -AutoSize -Wrap
 
 # Remote software removal - test
 Start-Process  -Wait  -FilePath  "wmic"  -ArgumentList  "product where `"name like '%Adobe Reader%'`" call uninstall" -Hidden
