@@ -22,6 +22,7 @@ nav_order: 4
 
 Spreadsheet Compare is only available with Office Professional Plus 2013 or Microsoft 365 Apps for enterprise
 Excel: Power Pivot - Requires: Office 2013 professional plus and PowerBI Desktop
+Office 365 F3 license - allows web access to Yammer and OneDrive via the browser
 
 
 get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\' -recurse | where {$_.name -like '*2016*'}
