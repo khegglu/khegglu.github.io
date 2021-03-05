@@ -81,6 +81,13 @@ Another solution is done with diskpart. Use this solution if you want to keep th
 Simply open a new cmd, type in diskpart and confirm adminprompt. In diskpart type in "list disk" and locate your USB drive. Select your USB drive with "select disk ###" (replace "###" with the desired number). Then type in "list partition" and select the primary partition with "select partition ###". After selecting both disk and partition, type in "inactive". Your drive should be set to inactive now and after plugging the USB stick out and in again, the BitLocker option should be available again.
 ```
 
+## System Devices:
+### Intel Wireless Bluetooth - Currently, this hardware device is not connected to the computer. (Code 45) To fix this problem, reconnect this hardware device to the computer.
+
+*The OS is not enumerating the device properly. This can be caused by physical trauma causing the device to become dislodged, or the device failing. More often than not, the hardware is just fine.*
+
+This issue is usually resolved by a simple static drain. Power off the computer, then hold the power button for at least 1 minute, before you then power it back on again.
+
 ## The Group Policy Client service failed the logon. Access is denied.
 
 Issue due to corrupt user registries for the affected user, proceed to remove the users profile in the registry and rename the users folder.
