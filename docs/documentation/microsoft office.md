@@ -445,6 +445,15 @@ Get-ChildItem -Path "C:\Users\*\appdata\Roaming\Microsoft\Web Server Extensions\
 Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -Force | remove-item -confirm:$false -recurse -Force -ErrorAction SilentlyContinue
 ```
 
+## Microsoft Teams
+### Client Downloads
+
+- [MS Teams: v/1.3.00.33674 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.33674/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.32283 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.32283/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.30866 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.30866/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.28779 Download](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.26064 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
+
 ## Skype for Business
 ### Webcam freezing after windows update
 
