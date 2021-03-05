@@ -25,6 +25,18 @@ Issue appears to be related to bios or other hardware settings. One reference ar
 - [Reference article](https://support.hp.com/my-en/document/c06466020)
 - [Reference article](https://support.hp.com/au-en/document/c06466416)
 
+### BlueScreen of Death: Driver related
+
+Instead of spending too much time on deep diving in to the .dmp files, i find the most straightforward way to resolve these issues is to just override all the old system drivers with new ones.
+
+- [HP Machine Full Driver Packs](https://hpia.hpcloud.hp.com/downloads/driverpackcatalog/HP_Driverpack_Matrix_x64.html)
+
+```
+# Save as .bat and run from the driver extract folder
+cd %~dp0
+for /f %%i in ('dir /b /s *.inf') do pnputil.exe -i -a %%i
+```
+
 ## Docking Station:
 ### USB-C drivers
 
