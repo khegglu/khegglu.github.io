@@ -485,6 +485,17 @@ reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office" /f
 - [Microsoft Office 2016 KB4011631 Download](https://download.microsoft.com/download/E/3/6/E36DCF64-73A4-430E-9E5B-107CE49F714F/msodll40ui2016-kb4011631-fullfile-x64-glb.exe)
 - [Microsoft Office 2016 KB4011099 Download](https://download.microsoft.com/download/B/A/1/BA1D3A64-F1AD-49AB-B80E-2D8367D8ACBB/msodll40ui2016-kb4011099-fullfile-x64-glb.exe)
 
+## Access Runtime
+### App v2016: "Error 2711.  An internal error has occurred.  (ACCESSFiles)."
+
+*Automatic configuration of the current version of Microsoft Access has failed. Your database might not function correctly. This can occur if you do not have the necessary permissions to install Microsoft Access on this computer.*
+
+The issue here can occur on machines that had previous versions of access runtime installed. Under the following registry location there is a default variable, that is pointing to ACEOLEDB.DLL and if this path is incorrect then you will get this error.
+
+```
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{3BE786A0-0366-4F5C-9434-25CF162E475E}\InprocServer32" /ve /t REG_SZ /d "C:\Program Files\Common Files\Microsoft Shared\OFFICE16\ACEOLEDB.DLL" /f
+```
+
 ## Office
 ### Disable Office Sync Tool
 
