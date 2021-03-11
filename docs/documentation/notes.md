@@ -78,6 +78,9 @@ Reg Query "HKEY_USERS\S-1-5-21-X-X-X-X\software\microsoft\windows\currentversion
 ```
 
 ```
+# Check who installed software
+Get-EventLog -LogName Application -InstanceId 1033 -Message *Adobe* | Format-Table TimeGenerated, UserName, Message -AutoSize -Wrap
+
 # Install report from Event Logs
 Get-EventLog -LogName Application -InstanceId 1033 -Newest 1 | Select-Object -ExpandProperty message
 Get-WinEvent -FilterHashtable @{logname = ‘setup’} | Format-Table timecreated, message -AutoSize -Wrap
