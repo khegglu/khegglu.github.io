@@ -146,6 +146,15 @@ Set-ADUser -Remove @{PublicDelegates="UID"}
 Set-ADUser -clear PublicDelegates
 ```
 
+### Changes to the public group membership cannot be saved. You do not have sufficient permission to perform this operation on this object.
+
+This error occurs for O365 on-boarded users that try to add users to distribution lists in Outlook. A workaround to this issue is to create a shortcut to DSQuery, this will give them a basic ad tool that will only allow them to make basic changes to the distribution list that they are set as the manager for with the update membership attribute ticked.
+
+```
+Right click Desktop > New Shortcut
+%SYSTEMROOT%\System32\rundll32.exe dsquery,OpenQueryWindow
+```
+
 ### Items deleted in a shared mailbox goes to the users deleted items instead of the shared mailbox deleted items.
 
 This option can be changed through the user registries. By default the key is set to 8, to store deleted items in the mailbox it was deleted from the key needs to be set to 4.
