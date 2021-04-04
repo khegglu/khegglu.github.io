@@ -95,6 +95,14 @@ This error seems to be related to something with the language packs, initally it
 <AddLanguage Id="en-us" ShellTransform="yes"/>
 ```
 
+### "Error 30066. Unable to install office application"
+
+This error is given if the machine has some click to run microsoft app installed on it. It is not possible to mix click to run with .msi versions of office.
+
+*You can't install the same version of Office products that use two different installation technologies installed on the same computer. This also applies to standalone applications like Access, Visio, Project, Skype for Business, or OneDrive for Business.*
+
+- [Reference](https://support.microsoft.com/en-us/office/office-installed-with-click-to-run-and-windows-installer-on-same-computer-isn-t-supported-30775ef4-fa77-4f47-98fb-c5826a6926cd)
+
 ## Outlook:
 ### App v16.0.4266.1001 crashing with emails that have attachments
 *Microsoft Outlook 2016 may crash when using the Symantec Endpoint Protection (SEP) Outlook Scanner Add-in. Uninstalling or disabling the Symantec add-in resolves the symptoms.*
