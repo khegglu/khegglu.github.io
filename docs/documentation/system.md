@@ -15,6 +15,15 @@ nav_order: 2
 
 ---
 
+### You have been logged in with a temporary profile
+
+```
+# Remote connect to the device and remove all corrupted user profiles in the rgistry (key contains .bak)
+Get-ChildItem -Path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList" | Where Name -like "*.bak" | Remove-Item -confirm:$false
+# Restart the machine, then clear out all "Temp" folders from C:\Users
+cmd /c 'for /d %G in ("C:\Users\TEMP*") do rd /s /q "%~G"'
+```
+
 ## Bitlocker:
 ### Cannot retrieve recovery password information. Size limit for the request has been exceeded. (Active Directory)
 
