@@ -31,6 +31,10 @@ rundll32.exe cryptui.dll,CryptUIStartCertMgr
 
 # Temporarily disable Symantec Antivirus
 start smc -stop
+
+# App-V
+Get-AppvStatus
+Enable-Appv
 ```
 
 ## Powershell:
