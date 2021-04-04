@@ -121,6 +121,11 @@ By default windows 10 will drop idle connections after a specified time-out peri
 Open cmd as administrator and use the command below to turn the auto-disconnect feature off.
 > net config server /autodisconnect:-1
 
+```
+# Registry alternative, can also query this key to verify current settings
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v autodisconnect /t REG_DWORD /d 0xf /f
+```
+
 ## This share requires the obsolete SMB1 protocol
 
 *As of a Windows 10 v1709 update the SMBv1 protocol is by default not installed, this is due to security and vulnerability issues. You will see this error if you are trying to connect to a share that is hosted on windows server 2003, or newer where they are not using SMBv2(2008) or SMBv3(2012).*
