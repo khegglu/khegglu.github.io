@@ -20,6 +20,8 @@ nav_order: 1
 ```
 # Get the system disk space
 Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'" | Select-Object -Property DeviceID, DriveType, VolumeName, @{L='FreeSpaceGB';E={"{0:N2}" -f ($_.FreeSpace /1GB)}}, @{L="Capacity";E={"{0:N2}" -f ($_.Size/1GB)}}
+# Get the system disk space alternative
+Get-WmiObject -Class Win32_logicaldisk -Filter "DriveType = '3'" | Select-Object -Property @{L='FreeSpace';E={"{0:N2} GB" -f ($_.FreeSpace /1GB)}}, @{L="Capacity";E={"{0:N2} GB" -f ($_.Size/1GB)}}
 
 # Clear credential manager, ran as user
 cmdkey /list | ForEach-Object{if($_ -like "*Target:*" -and $_ -like "*"){cmdkey /del:($_ -replace " ","" -replace "Target:","")}}
