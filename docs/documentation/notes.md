@@ -35,6 +35,9 @@ start smc -stop
 # App-V
 Get-AppvStatus
 Enable-Appv
+
+# Stat disk check from remote session
+echo y | chkdsk C: /F /R
 ```
 
 ## Powershell:
