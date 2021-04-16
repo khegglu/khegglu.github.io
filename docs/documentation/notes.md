@@ -36,7 +36,7 @@ start smc -stop
 Get-AppvStatus
 Enable-Appv
 
-# Stat disk check from remote session
+# Start disk check from remote session
 echo y | chkdsk C: /F /R
 ```
 
@@ -67,6 +67,14 @@ Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name ConsoleP
 
 # Disable flash EOL notification message in Internet Explorer, plugin will be removed at the end of next year.
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main" /v DisableFlashNotificationPolicy /t REG_DWORD /d 1 /f
+```
+
+## Event Logs:
+
+```
+# Get event log report after: chkdsk
+$FilterXPath = "*[System[Provider[@Name='Microsoft-Windows-Wininit'] and (EventID=1001)]]"
+Get-WinEvent -LogName 'Application' -FilterXPath $FilterXPath -MaxEvents 1 | Select-Object -ExpandProperty Message
 ```
 
 ## Installs:
