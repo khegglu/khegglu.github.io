@@ -247,6 +247,14 @@ reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsGetDiagn
 reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsRunInBackground /t REG_DWORD /d 2 /f
 ```
 
+## "The computer must be trusted for delegation and the current user account must be configured to allow delegation."
+
+*To work around this problem, set the value of the ProtectionPolicy registry entry to 1 to enable local backup of the MasterKey instead of requiring a RWDC in the following registry subkey.*
+
+```
+REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Cryptography\Protect\Providers\df9d8cd0-1501-11d1-8c7a-00c04fc297eb" /v ProtectionPolicy /t REG_DWORD /d 1 /f
+```
+
 ## BSOD - Blue Screen of Death:
 ### Stop Code: "PAGE_FAULT_IN_NONPAGED_AREA" - "Netwtw06.sys"
 
