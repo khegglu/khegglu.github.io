@@ -52,7 +52,9 @@ Get-ADUserResultantPasswordPolicy $user
 # Change domain computername
 Rename-Computer –computername OldName –newname NewName –domaincredential Domain\Admin_User –force –restart
 
-
+# "During a logon attempt, the user’s security context accumulated too many security IDs."
+*The security token of a Windows Client can hold up to 1024 SIDs. If a user object is member of more groups than allowed, the logon fails.*
+($token=(get-aduser (get-aduser admin_userid) -Properties tokengroups).tokengroups).count
 
 ```
 
