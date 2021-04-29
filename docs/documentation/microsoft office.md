@@ -68,6 +68,10 @@ This error is fixed by running "SFC /SCANNOW" which will resolve a file system i
 Start-Process -FilePath "${env:Windir}\System32\SFC.EXE" -ArgumentList '/scannow' -Wait -Verb RunAs -WindowStyle hidden
 ```
 
+### "Error 1704. When installing Office 2016"
+
+For some reason this error is fixed by uninstalling skype for business. Install office first and skype afterwards if it occurs.
+
 ### "Error 1305. Setup cannot read file C:\Program Files (x86)\Common File\Microsoft Shared\OFFICE14\MSO.dll"
 
 The error is related to the cd/dvd drive on the client. The upper filter go between the operating system and the main driver, while the lower driver go between the main driver and the hardware. Don't know exactly what causes the error but removing these keys, then rebooting the machine resolves the issue.
@@ -208,6 +212,37 @@ Outlook /cleanautocompletecache
 ```
 
 *The cache will only repopulate with the addresses you actually send emails to, if you just load users in the "To" field and close the mail then the addresses will stick until you close outlook and then disappear from cache.*
+
+### Shared mailbox email search functionality
+
+Explanation on how the search functionality works within Outlook. In our case the mailboxes are added via advanced, and a lot of users have "Download Shared Folders" ticked and are then complaining about not finding shared mailbox emails.
+
+- [Reference article](https://techcommunity.microsoft.com/t5/outlook-global-customer-service/understanding-search-scopes-in-microsoft-outlook/bc-p/2273234)
+
+```
+## Outlook 2016 ##
+
+# Added via Advanced tab with Download Shared Folders turned on
+- Current Folder
+- WSD
+# Added via Advanced tab with Download Shared Folders turned off
+- Current Folder; Subfolders; Current Mailbox*
+- Exchange Search
+
+# AutoMapped with Download Shared Folders turned on
+- Current Folder
+- WSD
+# AutoMapped with Download Shared Folders turned off
+- Current Folder; Subfolders; Current Mailbox*
+- Exchange Search
+
+# Second Exchange account in cached mode
+- Current Folder; Subfolders; All Outlook Items; Current Mailbox; All Mailboxes
+- WSD
+# Second Exchange account in online mode
+- Current folder; Subfolders; All Outlook Items; Current Mailbox; All Mailboxes
+- Exchange Search
+```
 
 ## Excel:
 ### App v16.0.4978.1000 crashing when saving file to sharepoint
