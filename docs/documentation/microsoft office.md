@@ -244,6 +244,8 @@ Explanation on how the search functionality works within Outlook. In our case th
 - Exchange Search
 ```
 
+*If the Search options are set to anything other than Current folder, you may need to manually select the Current Folder scope in the Search tab when searching in a shared mailbox. This can be done either before or after you execute the search. If you do not click Current Folder, the search results will be limited to the primary or secondary Exchange accounts in the Outlook profile. No items will be included from shared or AutoMapped mailboxes, or those added by using the Open these additional mailboxes option.*
+
 ## Excel:
 ### App v16.0.4978.1000 crashing when saving file to sharepoint
 
