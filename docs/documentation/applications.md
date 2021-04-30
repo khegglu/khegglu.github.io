@@ -41,11 +41,31 @@ This error is due to issues regarding Zscaler's root CA certificate, this needs 
 
 Download the certificate. Double click it and install for user, then do the same and install for machine, and lastly restart Internet Explorer.
 
+### Internet Explorer: Not prompting to download .csv files
+
+This issue can be resolved by creating some registry values to recognize the filetypes and the app to open these in.
+
+```
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\application/csv" /v CLSID /t REG_SZ /d "{00020812-0000-0000-C000-000000000046}" /f
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\application/csv" /v Encoding /t REG_BINARY /d 08000000 /f
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\application/csv" /v Extension /t REG_SZ /d ".csv" /f
+
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/csv" /v CLSID /t REG_SZ /d "{00020812-0000-0000-C000-000000000046}" /f
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/csv" /v Encoding /t REG_BINARY /d 08000000 /f
+REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/csv" /v Extension /t REG_SZ /d ".csv" /f
+
+# {00020812-0000-0000-C000-000000000046} is the CLSID for Excel 2016
+# {25336920-03F9-11cf-8FD0-00AA00686F13} is the CLSID for the "Browse in place", for filetypes you would want to force open in the browser.
+```
+
 ### Google Chrome: "The application has failed to start because its side-by-side configuration is incorrect."
 
 This error is generally resolved by quickly re-installing google chrome, in our environment there are cases where removing/upgrading chrome fails because the old installation reference is still in the registry. So instead of installing as it should the package delivery system asks for the old installer to remove the old app. In the registry location below there should be a google chrome reference, if it is deleted then the software can be pushed.
 
+
+
 ```
+
 HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\KeyID
 ```
 
