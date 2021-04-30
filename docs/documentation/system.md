@@ -255,6 +255,17 @@ reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsRunInBac
 REG ADD "HKEY_LOCAL_MACHINE\Software\Microsoft\Cryptography\Protect\Providers\df9d8cd0-1501-11d1-8c7a-00c04fc297eb" /v ProtectionPolicy /t REG_DWORD /d 1 /f
 ```
 
+## "Incorrect permissions on Windows Search directories"
+
+This is a issue where the Windows Search Indexing gets stuck and refuses to rebuild the cache, when running the windows troubleshooter tool it references that the search directories have incorrect permissions. The folder is re-created automatically by the system, so we can just delete it and let it re-generate with the correct rights.
+
+```
+Stop-Service "WSearch" -Force
+Set-Service -Name "WSearch" -StartupType Disabled -Status Stopped
+Remove-Item "C:\ProgramData\Microsoft\Search" -Recurse -Force
+Set-Service -Name "WSearch" -StartupType Automatic -Status Running
+```
+
 ## BSOD - Blue Screen of Death:
 ### Stop Code: "PAGE_FAULT_IN_NONPAGED_AREA" - "Netwtw06.sys"
 
