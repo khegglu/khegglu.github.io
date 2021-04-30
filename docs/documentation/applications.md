@@ -68,6 +68,14 @@ Open run and paste in the command below, if it runs sucessfully update the graph
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-gpu
 ```
 
+### Google Chrome: Not saving bookmarks, not properly closing app, etc
+
+This specific machine was for some reason being pushed an AppV version of both Chrome and FireFox, both these versions of the browsers are normally intended for VDE/VDL's in the citrix environment. This is why the browser was glitchy and not working properly, citrix is more restricted. Quick fix here was to just remove the shortcuts to the AppV launchers. 
+
+```
+C:\Users\UserID\AppData\Local\Microsoft\AppV\Client\Integration\
+```
+
 ### Update for Removal of Adobe Flash Player for Windows
 
 *Applying this update will remove Adobe Flash Player from your Windows device. After this update has been applied, this update cannot be uninstalled.*
