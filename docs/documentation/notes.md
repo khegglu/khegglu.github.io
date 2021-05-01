@@ -38,6 +38,16 @@ Enable-Appv
 
 # Start disk check from remote session
 echo y | chkdsk C: /F /R
+
+# ARP
+* List entries
+arp -a
+* Reset cache
+arp -d
+* Manual entries
+- netsh interface ipv4 add neighbors "Local Area Connection" 10.170.52.5 70-10-6f-ae-48-fa
+* Remove manual entries
+- netsh interface ipv4 reset
 ```
 
 ## Powershell:
