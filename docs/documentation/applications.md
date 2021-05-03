@@ -58,6 +58,15 @@ REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/csv" /v Extension /t 
 # {25336920-03F9-11cf-8FD0-00AA00686F13} is the CLSID for the "Browse in place", for filetypes you would want to force open in the browser.
 ```
 
+### Microsoft EDGE: Plugins
+
+- [Reference article](https://docs.microsoft.com/en-us/deployedge/faqs-edge-in-the-enterprise)
+
+Does Microsoft Edge (Chromium-based) support ActiveX controls or BHOs like Silverlight or Java?
+
+No. Microsoft Edge doesn't support ActiveX controls or Browser Help Objects (BHOs) like Silverlight or Java. However, if you're running web apps that use ActiveX controls, BHOs, or legacy document modes on Internet Explorer 11, you can configure them to run in IE mode on the new Microsoft Edge. For more information, see Configure IE mode on Microsoft Edge.
+
+
 ### Google Chrome: "The application has failed to start because its side-by-side configuration is incorrect."
 
 This error is generally resolved by quickly re-installing google chrome, in our environment there are cases where removing/upgrading chrome fails because the old installation reference is still in the registry. So instead of installing as it should the package delivery system asks for the old installer to remove the old app. In the registry location below there should be a google chrome reference, if it is deleted then the software can be pushed.
