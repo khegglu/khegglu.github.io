@@ -400,6 +400,22 @@ Computer\HKEY_CLASSES_ROOT\.xlsx - (Default) - Excel.Sheet.12
 HKEY_CURRENT_USER\SOFTWARE\Classes\.xlsx - (Default) - Excel.Sheet.12
 ```
 
+### PowerPivot: The provider 'MSOLAP' is not registered
+
+This behavior is by design. It occurs when the provider that is defined for the data connection for PowerPivot data doesn't exist on your system.
+
+- [Reference article](https://docs.microsoft.com/en-us/office/troubleshoot/excel/class-not-registered-error-pivotpoint)
+
+```
+The provider <Provider name> is not registered.
+The following system error occurred: Class not registered A connection could not be made to the data source with the DataSourceID of <data source id>', Name of <data source name>. An error occurred while processing the <table name>. The provider <Provider name> is not registered.
+The operation has been cancelled.
+```
+
+- [Analysis Services client libraries](https://docs.microsoft.com/en-us/analysis-services/client-libraries?view=asallproducts-allversions)
+- [MSOLAP (amd64)](https://go.microsoft.com/fwlink/?linkid=829576)
+- [MSOLAP (x86)](https://go.microsoft.com/fwlink/?linkid=829575)
+
 ## PowerPoint:
 ### App v16.0.4266.1001 powerpoints crashing with error reference to ppcore.dll
 
