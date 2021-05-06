@@ -38,6 +38,12 @@ for /f %%i in ('dir /b /s *.inf') do pnputil.exe -i -a %%i
 ```
 
 ## Docking Station:
+
+### USB-C issues
+
+- In case attachments to the docking station is not working then verify that they are using correct USB-C ports on the computer, they normally have a charging only port + a separate port with additional features.
+- As well there is a port connection issue that can occur similar to WiFi/Bluetooth that is resolved by a static drain.
+
 ### USB-C drivers
 
 - [HP USB-C Universal Dock Driver](https://ftp.hp.com/pub/softpaq/sp92501-93000/sp92798.exe)
