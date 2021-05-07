@@ -124,7 +124,8 @@ Start-Process  -Wait  -FilePath  "wmic"  -ArgumentList  "product where `"name li
 wusa.exe C:\Packages\windows10.0-kb4577586-x64_ec16e118cd8b99df185402c7a0c65a31e031a6f0.msu /quiet /norestart
 wusa.exe /uninstall /kb:123456 /quiet /norestart
 * How to do .cab's?
-wusa.exe C:\Packages\spd-x-none_7c1009a5a70cac8d7012a44d2710faf79d7d7fb5.cab /quiet /norestart
+- NO (wusa.exe C:\Packages\spd-x-none_7c1009a5a70cac8d7012a44d2710faf79d7d7fb5.cab /quiet /norestart)
+dism.exe /online /add-package /PackagePath:C:\Packages\PatchTemp\Windows10.0-KB4577586-x64.cab
 
 # Remote install of HP Drivers
 cmd /c 'c:\packages\sp107705.exe' -e -s
@@ -159,6 +160,9 @@ cmd /c 'c:\packages\companion5.5.1.0setup.exe' /exenoui /qn ACCEPT_EULA=1 DISABL
 
 # Silent install of Plantronics Manager
 cmd /c 'C:\Packages\PlantronicsHubInstaller.exe' /install /quiet
+
+# Silent install of Jabra Direct
+cmd /c 'C:\Packages\JabraDirectSetup5.2.20825.exe' /install /quiet /norestart
 ```
 
 
