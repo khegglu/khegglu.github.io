@@ -163,6 +163,10 @@ cmd /c 'C:\Packages\PlantronicsHubInstaller.exe' /install /quiet
 
 # Silent install of Jabra Direct
 cmd /c 'C:\Packages\JabraDirectSetup5.2.20825.exe' /install /quiet /norestart
+
+# Silent install of Adobe Creative Cloud
+Expand-Archive "C:\Packages\Windows 10_en_US_WIN_64.zip" "C:\Packages"
+cmd /c "C:\Packages\Windows 10_en_US_WIN_64\windows 10\build\setup.exe" --silent
 ```
 
 
