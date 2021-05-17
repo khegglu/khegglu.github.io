@@ -40,7 +40,7 @@ Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase $
 Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase $computer.DistinguishedName -Properties whenCreated, msFVE-RecoveryPassword | Remove-ADObject -confirm:$false
 
 # One liner to pull the existing data and print to screen
-Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase (Get-ADComputer GBSOTWDA3S05824$).DistinguishedName -Properties whenCreated, msFVE-RecoveryPassword | Sort whenCreated -Descending | Select whenCreated, msFVE-RecoveryPassword, Name
+Get-ADObject -Filter 'objectClass -eq "msFVE-RecoveryInformation"' -SearchBase (Get-ADComputer GBSOTWDA3S05824$).DistinguishedName -Properties whenCreated, msFVE-RecoveryPassword | Sort whenCreated -Descending | Select whenCreated, msFVE-RecoveryPassword, @{Name="Name";Expression={(($_.Name).Split("{")[1]).split("-")[0]}}
 
 # From the device force a resync to AD
 manage-bde -protectors -get c:
