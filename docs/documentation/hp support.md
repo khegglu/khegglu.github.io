@@ -25,6 +25,10 @@ Issue appears to be related to bios or other hardware settings. One reference ar
 - [Reference article](https://support.hp.com/my-en/document/c06466020)
 - [Reference article](https://support.hp.com/au-en/document/c06466416)
 
+### "There is a problem with the security device on the unit"
+
+Open Device Manager as admin, and select "Security Devices", find "Trusted Platform Module 2.0" in the list, right click uninstall the adapter + remove the driver. Reboot the laptop and check if the issue persists.
+
 ### BlueScreen of Death: Driver related
 
 Instead of spending too much time on deep diving in to the .dmp files, i find the most straightforward way to resolve these issues is to just override all the old system drivers with new ones.
