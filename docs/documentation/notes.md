@@ -167,6 +167,11 @@ cmd /c 'C:\Packages\JabraDirectSetup5.2.20825.exe' /install /quiet /norestart
 # Silent install of Adobe Creative Cloud
 Expand-Archive "C:\Packages\Windows 10_en_US_WIN_64.zip" "C:\Packages"
 cmd /c "C:\Packages\windows 10\build\setup.exe" --silent
+
+# Silent install of Crystal Reports Developer Edition v10
+Set-Content 'C:\Packages\Response.ini' -value "### Product keycode`r`nproductkey=""XXXXX-XXXXXXX-XXXXXX-XXXXXXX-XX"""
+cmd /c 'setup.exe -r C:\Packages\Response.ini'
+- https://help.sap.com/viewer/9fe2522cc23841d389160e24e801186f/2016.4/en-US/476017e16e041014910aba7db0e91070.html
 ```
 
 
