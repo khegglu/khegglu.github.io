@@ -524,6 +524,28 @@ Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -
 - [MS Teams: v/1.3.00.28779 Download](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
 - [MS Teams: v/1.3.00.26064 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
 
+### "New Meeting Experience" missing
+
+*In the older teams clients the “New Meeting Experience” was first added as a tickable option in the settings, but later it was programmed as the default setting so this option was removed from the settings menu. The issue here is how the program is determining if the machine is of the correct machine type or not, since the feature is blocked for virtual machines*
+
+*The issue we ran in to is that we use the password reset solution: Anixis Password Policy Enforcer. This program creates a registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix". What happens here is that MS Teams during the installation sees this key existing, and with that determines that the machine it is being installed on is a virtual machine. Since it detects this then the app sets the following in its configuration: “"VDIModeEnabled": true”.*
+
+*Someone from Microsoft support, have been in contact with Anixis support. They have made a statement to confirm that this registry key is ok to remove.*
+
+- [Reference article](https://techcommunity.microsoft.com/t5/microsoft-teams/teams-new-meeting-experience-still-not-showing-up/m-p/1642076)
+- [Reference article](https://www.technipages.com/fix-teams-new-meeting-experience-not-working)
+
+```
+You can confirm this information yourselves by having MS Teams open, then push the following keys at the same time: CTRL + ALT + Shift + 1
+- This will start a log data download that will go to your downloads folder, the file you need to open there is the largest text file in size.
+- Within this file you can search for VDIModeEnabled, if the word exists in the config then you know that the new experience feature is disabled, if it can’t find it in the file then the feature should be enabled.
+
+# Solution:
+- REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix" /f
+- Uninstall teams from control panel
+- Install teams from the installer
+```
+
 ## Skype for Business
 ### Webcam freezing after windows update
 
