@@ -528,7 +528,7 @@ Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -
 
 *In the older teams clients the “New Meeting Experience” was first added as a tickable option in the settings, but later it was programmed as the default setting so this option was removed from the settings menu. The issue here is how the program is determining if the machine is of the correct machine type or not, since the feature is blocked for virtual machines*
 
-*The issue we ran in to is that we use the password reset solution: Anixis Password Policy Enforcer. This program creates a registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix". What happens here is that MS Teams during the installation sees this key existing, and with that determines that the machine it is being installed on is a virtual machine. Since it detects this then the app sets the following in its configuration: “"VDIModeEnabled": true”.*
+*The issue we ran in to is that we use the password reset solution: Anixis Password Policy Enforcer. This program creates a registry key "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix". What happens here is that MS Teams during the installation sees this key existing, and with that determines that the machine it is being installed on is a virtual machine. Since it detects this then the app sets the following in its configuration: "VDIModeEnabled": true.*
 
 *Someone from Microsoft support, have been in contact with Anixis support. They have made a statement to confirm that this registry key is ok to remove.*
 
