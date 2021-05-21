@@ -58,6 +58,15 @@ REG ADD "HKEY_CLASSES_ROOT\MIME\Database\Content Type\text/csv" /v Extension /t 
 # {25336920-03F9-11cf-8FD0-00AA00686F13} is the CLSID for the "Browse in place", for filetypes you would want to force open in the browser.
 ```
 
+### Internet Explorer: There was a temporary DNS error. Error Code:  INET_E_RESOURCE_NOT_FOUND
+
+*This error may occur after installing Microsoft Windows Creators update*
+
+```
+REG COPY "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ConnectionsX" /f
+REG DELETE "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections" /f
+```
+
 ### Microsoft EDGE: Plugins
 
 - [Reference article](https://docs.microsoft.com/en-us/deployedge/faqs-edge-in-the-enterprise)
