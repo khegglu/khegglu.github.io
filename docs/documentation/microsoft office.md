@@ -528,7 +528,7 @@ Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -
 - [MS Teams: v/1.3.00.28779 Download - Oct 13, 2020](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
 - [MS Teams: v/1.3.00.26064 Download - Sep 16, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
 
-- [MS Teams: v/1.3.00.8663 Download - Apr, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.8663/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.8663 Download - Apr 16, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.8663/Teams_windows_x64.exe)
 - [MS Teams: v/1.3.00.4461 Download - Mar 26, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.4461/Teams_windows_x64.exe)
 
 ### "New Meeting Experience" missing
