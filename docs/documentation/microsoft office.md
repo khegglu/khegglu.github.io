@@ -528,6 +528,9 @@ Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -
 - [MS Teams: v/1.3.00.28779 Download - Oct 13, 2020](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
 - [MS Teams: v/1.3.00.26064 Download - Sep 16, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
 
+- [MS Teams: v/1.3.00.8663 Download - Apr, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.8663/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.4461 Download - Mar 26, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.4461/Teams_windows_x64.exe)
+
 ### "New Meeting Experience" missing
 
 *In the older teams clients the “New Meeting Experience” was first added as a tickable option in the settings, but later it was programmed as the default setting so this option was removed from the settings menu. The issue here is how the program is determining if the machine is of the correct machine type or not, since the feature is blocked for virtual machines*
