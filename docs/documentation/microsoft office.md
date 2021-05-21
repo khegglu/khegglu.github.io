@@ -518,11 +518,15 @@ Get-ChildItem -Path "C:\Users\*\appdata\local\microsoft\websitecache" -recurse -
 ## Microsoft Teams
 ### Client Downloads
 
-- [MS Teams: v/1.3.00.33674 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.33674/Teams_windows_x64.exe)
-- [MS Teams: v/1.3.00.32283 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.32283/Teams_windows_x64.exe)
-- [MS Teams: v/1.3.00.30866 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.30866/Teams_windows_x64.exe)
-- [MS Teams: v/1.3.00.28779 Download](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
-- [MS Teams: v/1.3.00.26064 Download](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
+- [MS Teams: v/1.4.00.2781 Download - Jan 27, 2021](https://statics.teams.cdn.office.net/production-windows-x64/1.4.00.2781/Teams_windows_x64.exe)
+- [MS Teams: v/1.4.00.2595 Download - Jan 25, 2021](https://statics.teams.cdn.office.net/production-windows-x64/1.4.00.2595/Teams_windows_x64.exe)
+- [MS Teams: v/1.4.00.1973 Download - Jan 19, 2021](https://statics.teams.cdn.office.net/production-windows-x64/1.4.00.1973/Teams_windows_x64.exe)
+
+- [MS Teams: v/1.3.00.33674 Download - Dec 1, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.33674/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.32283 Download - Nov 17, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.32283/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.30866 Download - Nov 3, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.30866/Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.28779 Download - Oct 13, 2020](https://statics.teams.cdn.office.net/production-windows-x64//Teams_windows_x64.exe)
+- [MS Teams: v/1.3.00.26064 Download - Sep 16, 2020](https://statics.teams.cdn.office.net/production-windows-x64/1.3.00.26064/Teams_windows_x64.exe)
 
 ### "New Meeting Experience" missing
 
