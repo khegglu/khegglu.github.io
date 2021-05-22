@@ -605,6 +605,24 @@ The issue here can occur on machines that had previous versions of access runtim
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{3BE786A0-0366-4F5C-9434-25CF162E475E}\InprocServer32" /ve /t REG_SZ /d "C:\Program Files\Common Files\Microsoft Shared\OFFICE16\ACEOLEDB.DLL" /f
 ```
 
+### "The 'Microsoft.ACE.OLEDB.12.0' provider is not registered in the local machine."
+
+The solution may depend on what is prompting the error, in this case it was a older label application that reacted badly after Access Database Engine 2010 got replaced with the 2016 edition. Even though technically the provider is as well included in with the new version.
+
+- [Microsoft Access Database Engine 2016 Redistributable x86](https://download.microsoft.com/download/3/5/C/35C84C36-661A-44E6-9324-8786B8DBE231/accessdatabaseengine.exe)
+- [Microsoft Access Database Engine 2016 Redistributable x64](https://download.microsoft.com/download/3/5/C/35C84C36-661A-44E6-9324-8786B8DBE231/accessdatabaseengine_X64.exe)
+
+```
+# Solution to install both on same machine:
+cmd /c 'accessdatabaseengine_X64.exe' /quiet
+cmd /c 'accessdatabaseengine.exe' /quiet
+* the /quiet bypasses the block that will normally be in place after installing the x64.
+* before 2016 the silently install handle was /passive instead of /quiet
+
+# Might need to as well:
+Delete or rename the mso.dll under: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\16.0\Common\FilesPaths"
+```
+
 ## Office
 ### Disable Office Sync Tool
 
