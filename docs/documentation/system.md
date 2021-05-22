@@ -269,6 +269,26 @@ Remove-Item "C:\ProgramData\Microsoft\Search" -Recurse -Force
 Set-Service -Name "WSearch" -StartupType Automatic -Status Running
 ```
 
+## CSC folder taking up disk space
+
+
+
+```
+# Disable Offline Files
+REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CSC" /v Start /t REG_DWORD /d 4 /f
+REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CscService" /v Start /t REG_DWORD /d 4 /f
+Set-Service -Name "CscService" -StartupType Disabled -Status Stopped
+
+# Take permissions of cache to clear it
+takeown /f C:\Windows\csc /r /a /d y > NUL
+icacls C:\Windows\csc /grant Administrators:(F) /t /l /q
+
+# Clear Cache, using robocopy will purge files with too long path
+mkdir C:\Temp\RoboCSC
+robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\targetfolder" /purge
+rmdir "C:\Temp\RoboCSC"
+```
+
 ## BSOD - Blue Screen of Death:
 ### Stop Code: "PAGE_FAULT_IN_NONPAGED_AREA" - "Netwtw06.sys"
 
