@@ -269,9 +269,9 @@ Remove-Item "C:\ProgramData\Microsoft\Search" -Recurse -Force
 Set-Service -Name "WSearch" -StartupType Automatic -Status Running
 ```
 
-## CSC folder taking up disk space
+## CSC folder taking up a lot of disk space
 
-
+In this specific case a user had set the entire shared drive to cache on to the machine, this folder was taking up over 60 GB of disk space.
 
 ```
 # Disable Offline Files
@@ -280,13 +280,13 @@ REG ADD "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CscService" /v Sta
 Set-Service -Name "CscService" -StartupType Disabled -Status Stopped
 
 # Take permissions of cache to clear it
-takeown /f C:\Windows\csc /r /a /d y > NUL
-icacls C:\Windows\csc /grant Administrators:(F) /t /l /q
+cmd /c 'takeown /f C:\Windows\csc /r /a /d y > NUL'
+cmd /c 'icacls C:\Windows\csc /grant Administrators:(F) /t /l /q'
 
 # Clear Cache, using robocopy will purge files with too long path
-mkdir C:\Temp\RoboCSC
-robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\targetfolder" /purge
-rmdir "C:\Temp\RoboCSC"
+cmd /c 'mkdir C:\Temp\RoboCSC'
+cmd /c 'robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\targetfolder" /purge'
+cmd /c 'rmdir "C:\Temp\RoboCSC"'
 ```
 
 ## BSOD - Blue Screen of Death:
