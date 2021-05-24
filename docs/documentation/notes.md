@@ -71,6 +71,8 @@ Rename-Computer –computername OldName –newname NewName –domaincredential D
 ## Registry:
 
 ```
+# For entering a hex value, the /d flag requires that you preface the 8-character hex value with 0x. E.g: /d 0x00000015
+
 # This registry key when set gives a CLI prompt for credentials instead of a pop-up box!
 Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name ConsolePrompting -Value $true
 
