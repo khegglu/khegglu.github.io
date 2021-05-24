@@ -48,6 +48,9 @@ arp -d
 - netsh interface ipv4 add neighbors "Local Area Connection" 10.170.52.5 70-10-6f-ae-48-fa
 * Remove manual entries
 - netsh interface ipv4 reset
+
+# OLEDB Provider list
+(New-Object system.data.oledb.oledbenumerator).GetElements() | select SOURCES_NAME, SOURCES_DESCRIPTION
 ```
 
 ## Powershell:
