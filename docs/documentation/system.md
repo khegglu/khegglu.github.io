@@ -289,6 +289,26 @@ cmd /c 'robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\targetfolder
 cmd /c 'rmdir "C:\Temp\RoboCSC"'
 ```
 
+## Shared drives lost after reboot
+
+This seems to be a common issue and especially around the v2004 release of Windows 10. Resetting the registries for the drive mapping appears to be the solution for most of these cases.
+
+```
+# First remove all current mapped shared drives!
+
+# Open regedit as the user, browse to the following entries:
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Map Network Drive MRU
+- Delete all alphabetic letters containing shared drive paths
+HKEY_CURRENT_USER\Network
+- Delete all entries in there
+
+# Remap the shared drives again, then go back to:
+HKEY_CURRENT_USER\Network
+- Click on each entry and make sure that a REG_DWORD with the below exists
+* ProviderFlags
+* 0x00000001
+```
+
 ## BSOD - Blue Screen of Death:
 ### Stop Code: "PAGE_FAULT_IN_NONPAGED_AREA" - "Netwtw06.sys"
 
