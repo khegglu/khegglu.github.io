@@ -206,6 +206,11 @@ Remove-Item "C:\Users\$env:username\AppData\Roaming\Notepad++\session.xml" -conf
 
 > Vendor confirmed that the Anixis tool requires a open port to a DC, either there is none set up or there is some issue with connectivity towards the DC.
 
+### SQLTools - "OCI8: Cannot allocate OCI handle" / "The program can't start because OCI.dll is missing"
 
+Application is installed in the users profile, the application as well have a dependency of the 32 bit Oracle Instant Client. The 2 errors in this case related to the user first of all copied the app files from a different computer, and second he did not have the dependency installed.
+
+- [SQLTools Downloads](http://www.sqltools.net/downloads.html)
+- [Oracle Clinet Downloads](https://www.oracle.com/database/technologies/instant-client/microsoft-windows-32-downloads.html)
 
 
