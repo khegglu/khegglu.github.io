@@ -69,6 +69,20 @@ Rename-Computer –computername OldName –newname NewName –domaincredential D
 *The security token of a Windows Client can hold up to 1024 SIDs. If a user object is member of more groups than allowed, the logon fails.*
 ($token=(get-aduser (get-aduser admin_userid) -Properties tokengroups).tokengroups).count
 
+# Filesystem search
+Get-ChildItem 'C:\' -recurse | where {$_.name -like '*lmi_rescue.exe*'}
+
+# Registry search:
+$path = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*'
+Get-ChildItem $path | Get-ItemProperty | Where-Object { $_.DisplayName -match 'autodesk'}
+$path2 = 'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'
+Get-ChildItem $path2 | Get-ItemProperty | Where-Object { $_.DisplayName -match 'autodesk'}
+
+# Get UNC path from DFS shares
+- Works on root share:
+Get-DfsnFolderTarget -Path "\\dc.domain.com\uk\Sites\Contract"
+- Works on sub folders
+dfsutil client property state "\\dc.domain.com\uk\Sites\Contract"
 ```
 
 ## Registry:
