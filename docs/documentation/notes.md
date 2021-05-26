@@ -211,6 +211,20 @@ cmd /c 'setup.exe -r C:\Packages\Response.ini'
 - https://help.sap.com/viewer/9fe2522cc23841d389160e24e801186f/2016.4/en-US/476017e16e041014910aba7db0e91070.html
 ```
 
+## UnInstalls:
+
+```
+# AutoCAD:
+wmic product where "vendor like '%autodesk%'" call uninstall
+cmd /c 'TASKKILL /F /IM "AdAppMgr.exe" & TASKKILL /F /IM "AdAppMgrUpdater.exe" & TASKKILL /F /IM "AutodeskDesktopApp.exe"'
+cmd /c "C:\Program Files (x86)\Autodesk\Autodesk Desktop App\removeAdAppMgr.exe" --mode unattended
+- Optional
+reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\AutodeskDesktopApp.exe" /f
+remove-item "C:\Programdata\Autodesk" -recurse -force
+remove-item "C:\Users\*\AppData\Roaming\Autodesk\Autodesk Desktop App\" -recurse -force
+remove-item "C:\Users\*\AppData\Local\Autodesk\Web Services\" -recurse -force
+```
+
 ## Active Directory:
 
 ```
