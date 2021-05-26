@@ -49,6 +49,10 @@ arp -d
 * Remove manual entries
 - netsh interface ipv4 reset
 
+# Change system language
+GET-WinSystemLocale
+SET-WinSystemLocale
+
 # OLEDB Provider list
 (New-Object system.data.oledb.oledbenumerator).GetElements() | select SOURCES_NAME, SOURCES_DESCRIPTION
 ```
