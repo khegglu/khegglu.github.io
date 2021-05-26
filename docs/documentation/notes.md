@@ -180,6 +180,12 @@ cmd /c 'C:\SWSetup\SP107705\setup.exe' -s
 ```
 
 ```
+# To Test: Silent install of SSDT
+cmd /c 'SSDT-Setup-ENU15.9.8.exe /install installvssql:ssdt /passive /NORESTART /LOG  c:\packages\ssdt2017-instance-creation.log'
+cmd /c 'SSDT-Setup-ENU15.9.8.exe /install installall /passive /NORESTART /LOG  c:\packages\ssdt2017-features-install.log'
+```
+
+```
 # Silent install of MSODBCSQL
 msiexec /i C:\Packages\msodbcsql_17.5.2.1_x64.msi /qn ADDLOCAL=ALL IACCEPTMSODBCSQLLICENSETERMS=YES
 
