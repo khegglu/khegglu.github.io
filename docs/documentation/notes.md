@@ -116,6 +116,12 @@ Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\PowerShell\1\ShellIds" -Name ConsoleP
 
 # Disable flash EOL notification message in Internet Explorer, plugin will be removed at the end of next year.
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main" /v DisableFlashNotificationPolicy /t REG_DWORD /d 1 /f
+
+# Interactive logon: Don't display last signed-in
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v DontDisplayLastUserName /t REG_DWORD /d 1 /f
+
+# Disable local admin auto login
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AutoAdminLogon /t REG_DWORD /d 0 /f
 ```
 
 ## Event Logs:
