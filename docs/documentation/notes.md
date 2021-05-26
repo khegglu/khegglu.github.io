@@ -130,6 +130,10 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogo
 # Get event log report after: chkdsk
 $FilterXPath = "*[System[Provider[@Name='Microsoft-Windows-Wininit'] and (EventID=1001)]]"
 Get-WinEvent -LogName 'Application' -FilterXPath $FilterXPath -MaxEvents 1 | Select-Object -ExpandProperty Message
+
+# Device manager logs
+Get-WinEvent -LogName "Microsoft-Windows-Kernel-PnP/Configuration"
+Get-WinEvent -LogName "Microsoft-Windows-Kernel-PnP/Configuration" | Select TimeCreated,LevelDisplayName,ID,ProcessId,Message,MachineName
 ```
 
 ## Installs:
