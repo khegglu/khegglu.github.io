@@ -21,6 +21,10 @@ nav_order: 1
 # LogonWorkstations Attribute - Service account security restriction
 - Attribute works differently than you would expect, the option says "LOG ON TO" but means "LOG ON FROM". So the HOST and not the TARGET needs to be added to the list.
 - In the case of scan to folder accounts: The printer hostname needs to be added to the attribute! Not the target server it is scanning to.
+
+* This wont work well for AD integrated applications!
+- For this feature a policy can be set up to apply for these accounts to restrict login to domain computers.
+- Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment > Deny log on locally
 ```
 
 ## System:
