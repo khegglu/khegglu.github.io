@@ -25,6 +25,8 @@ Excel: Power Pivot - Requires: Office 2013 professional plus and PowerBI Desktop
 Excel: Power Query - Is no longer an add-in since Office 2016, but is a native Excel feature from the Data tab, under the Get & Transform section.
 Office 365 F3 license - allows web access to Yammer and OneDrive via the browser
 
+# Disabled addins:
+HKEY_USERS\S-1-5-21-2763872571-2999947588-3099097816-583527\software\microsoft\office\16.0\resiliency\disableditems
 
 get-childitem 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\' -recurse | where {$_.name -like '*2016*'}
 cmd /c 'C:\Program Files\Altiris\Altiris Agent\Agents\SoftwareManagement\Software Delivery\{F734ED03-43DA-4720-AB96-33739378FE9F}\cache\install.bat'
