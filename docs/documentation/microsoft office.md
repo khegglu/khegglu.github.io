@@ -364,6 +364,12 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Se
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ServerInfoTimeout /t REG_DWORD /d 900000 /f
 ```
 
+### Smart View: not loading on start
+
+```
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\Excel\Addins\Hyperion.CommonAddin" /v LoadBehavior /t REG_DWORD /d 3 /f
+```
+
 ### Wont open files from shared drive, displays blank page
 
 Have not found an official fix for this issue, but we can work around it by closing all office apps and then renaming the user settings folder. When a office app is then opened then a new settings folder is created with the software defaults.
