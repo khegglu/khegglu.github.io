@@ -24,6 +24,25 @@ Get-ChildItem -Path "hklm:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileL
 cmd /c 'for /d %G in ("C:\Users\TEMP*") do rd /s /q "%~G"'
 ```
 
+### Block driver updates - Windows 10 Audio Update issues
+
+*For most devices there are more than one Hardware Ids. Usually the first two are the ones you need. The first one is the actual Hardware Id of your device and is specific to your device. For proper prevention, it is recommended to select the second one, which is more generic.*
+
+```
+# Locate Hardware ID:
+devmgmt.msc > Device properties > Details tab > Hardware ID from the dropdown list
+- PCI\VEN_8086&DEV_9D70&SUBSYS_8079103C&REV_21
+- PCI\VEN_8086&DEV_9D70&SUBSYS_8079103C
+* Select the second option, which is more generic rather than the specific device which is the first.
+
+# Enable block list:
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs\Restriction\DenyDeviceIDs" /v DenyDeviceIDs /t REG_DWORD /d 1 /f
+
+# Set blacklist:
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs\Restriction\DenyDeviceIDs" /v 1 /t REG_SZ /d "INTELAUDIO\FUNC_01&VEN_14F1&DEV_50F4&SUBSYS_103C8079" /f
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs\Restriction\DenyDeviceIDs" /v 2 /t REG_SZ /d "PCI\VEN_8086&DEV_9D70&SUBSYS_8079103C" /f
+```
+
 ## Bitlocker:
 ### Cannot retrieve recovery password information. Size limit for the request has been exceeded. (Active Directory)
 
