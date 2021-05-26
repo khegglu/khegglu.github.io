@@ -652,7 +652,32 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Off
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /f /v "OneDrive" /t REG_SZ /d "\"%LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe\" /background"
 ```
 
+### Office 2016 x64 - Win32::OLE::Const
 
+*Win32::OLE::Const did not see the Excel automation object although it was well registered and available in the registration database.*
 
+```
+# Already exists:
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{00020813-0000-0000-C000-000000000046}\1.9\0\Win64
+# Didn't exist:
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{00020813-0000-0000-C000-000000000046}\1.9\0\Win32
+
+# Solution is to duplicate it:
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{00020813-0000-0000-C000-000000000046}\1.9\0\Win32" /ve /t REG_SZ /d "C:\Program Files\Microsoft Office\Office16\EXCEL.EXE" /f
+```
+
+### Office 365 - Click-to-Run - OLE Automation 
+
+*Process Monitor suggest that it is looking for mso.dll in the wrong location, with click to run the registries is based out of a different part of the registry*
+
+```
+# Click to Run:
+HKLM\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\SOFTWARE\Classes\TypeLib\{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.8\0\win32\(Default)
+# Software looking for:
+HKCR\Typelib\{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.8\0\win32
+
+# Solution:
+reg add "HKCR\Typelib\{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.8\0\win32" /ve /t REG_SZ /d "C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE16\MSO.DLL" /f
+```
 
 
