@@ -49,6 +49,15 @@ arp -d
 * Remove manual entries
 - netsh interface ipv4 reset
 
+# Disable Hyper-V 
+- Check if enabled:
+bcdedit
+systeminfo.exe - Field: Device Guard Virtualization based security
+* If Hyper-V is disabled, you’ll just see a list of technologies that are required for Hyper-V to run and whether they are present on the system.
+- To disable virtualization:
+dism.exe /Online /Disable-Feature:Microsoft-Hyper-V-All
+bcdedit /set hypervisorlaunchtype off
+
 # Change system language
 GET-WinSystemLocale
 SET-WinSystemLocale
