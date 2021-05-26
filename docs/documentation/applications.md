@@ -213,4 +213,12 @@ Application is installed in the users profile, the application as well have a de
 - [SQLTools Downloads](http://www.sqltools.net/downloads.html)
 - [Oracle Clinet Downloads](https://www.oracle.com/database/technologies/instant-client/microsoft-windows-32-downloads.html)
 
+### Windows Media Player - "Server execution failed"
+
+Generally some issue with the system files, issue should be resolved by doing a system scan.
+
+```
+Start-Process -FilePath "${env:Windir}\System32\SFC.EXE" -ArgumentList '/scannow' -Wait -Verb RunAs -WindowStyle hidden
+```
+
 
