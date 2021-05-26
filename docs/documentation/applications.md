@@ -221,4 +221,11 @@ Generally some issue with the system files, issue should be resolved by doing a 
 Start-Process -FilePath "${env:Windir}\System32\SFC.EXE" -ArgumentList '/scannow' -Wait -Verb RunAs -WindowStyle hidden
 ```
 
+### Power BI - "An error happened while reading data from the provider: 'Object reference not set to an instance of an object.'"
+
+```
+Locate and copy the oraons.dll file in ‘<>product\12.2.0\client_1’ on your oracle install path
+Paste the file into the ‘<>product\12.2.0\client_1\bin directory
+```
+
 
