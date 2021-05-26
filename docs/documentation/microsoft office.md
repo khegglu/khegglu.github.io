@@ -676,6 +676,10 @@ HKLM\SOFTWARE\Microsoft\Office\ClickToRun\REGISTRY\MACHINE\SOFTWARE\Classes\Type
 # Software looking for:
 HKCR\Typelib\{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.8\0\win32
 
+# Need to double check paths for when Click to Run is implemented
+- C:\Program Files\Microsoft Office 16\ClientX64\Root\Office16\
+- C:\Program Files (x86)\Microsoft Office 16\ClientX86\Root\Office16\
+
 # Solution:
 reg add "HKCR\Typelib\{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}\2.8\0\win32" /ve /t REG_SZ /d "C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE16\MSO.DLL" /f
 ```
