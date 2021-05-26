@@ -55,6 +55,11 @@ SET-WinSystemLocale
 
 # OLEDB Provider list
 (New-Object system.data.oledb.oledbenumerator).GetElements() | select SOURCES_NAME, SOURCES_DESCRIPTION
+
+# Locked Files - Process Explorer from Sysinternals
+- Open the Process Explorer Search via Find > Find Handle or DLL (or press Ctrl + F), enter the file name, and wait for the list of processes accessing your file.
+- Taskkill /PID XXXX /F
+- https://download.sysinternals.com/files/ProcessExplorer.zip
 ```
 
 ## Powershell:
