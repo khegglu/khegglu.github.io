@@ -562,6 +562,49 @@ You can confirm this information yourselves by having MS Teams open, then push t
 - Install teams from the installer
 ```
 
+### Running multiple MS Teams accounts side by side ~ Error: Failed to get 'downloads path
+
+The default Teams app will be the one launched without the script, it means that if you click on a Teams meeting link, it is the default app that will be launched.
+
+- [GitHub Source](https://gist.github.com/DanielSmon/cc3fa072857f0272257a5fd451768c3a)
+
+*Save this with the name of the MS Teams profile you wish to use. When launched, a folder will be created in your user profile.*
+
+```
+# myprofile@orgA.com.cmd
+@ECHO OFF
+
+REM Uses the file name as the profile name
+SET MSTEAMS_PROFILE=%~n0
+ECHO - Using profile "%MSTEAMS_PROFILE%"
+
+SET "OLD_USERPROFILE=%USERPROFILE%"
+SET "USERPROFILE=%LOCALAPPDATA%\Microsoft\Teams\CustomProfiles\%MSTEAMS_PROFILE%"
+
+REM Ensure there is a downloads folder to avoid error described at
+REM https://gist.github.com/DanielSmon/cc3fa072857f0272257a5fd451768c3a
+mkdir "%LOCALAPPDATA%\Microsoft\Teams\CustomProfiles\%MSTEAMS_PROFILE%\Downloads"
+
+ECHO - Launching MS Teams with profile %MSTEAMS_PROFILE%
+cd "%OLD_USERPROFILE%\AppData\Local\Microsoft\Teams"
+"%OLD_USERPROFILE%\AppData\Local\Microsoft\Teams\Update.exe" --processStart "Teams.exe"
+```
+
+This script could recently give an error, but the issue has been resolved in above code.
+
+```
+Error: Failed to get 'downloads path
+at Object.<anonymous> (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\lib\loca...:54)
+at Module.compile (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\externa...:36)
+at Object.Module.extensions..js (internal/modules/cjs/loader.js:986:10)
+at Module.load (internal/modules/cjs/loader.js:816:32)
+at Function.Module._load (electron/js2c/asar.js:748:26)
+at Module.require (internal/modules/cjs/loader.js:853:19)
+at require (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\externa...:28)
+at Object.<anonymous> (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\lib\loca...:20)
+at Module.compile (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\externa...:36)
+```
+
 ## Skype for Business
 ### Webcam freezing after windows update
 
