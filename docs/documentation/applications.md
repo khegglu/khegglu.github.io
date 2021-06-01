@@ -228,4 +228,15 @@ Locate and copy the oraons.dll file in ‘<>product\12.2.0\client_1’ on your o
 Paste the file into the ‘<>product\12.2.0\client_1\bin directory
 ```
 
+### mRemoteNG - "Object reference not set to an instance of an object."
+
+Issue seems to be related to a corrupt configuration file, not sure exactly which but issue was resolved by re-installing the app after clearing cached files and folders in the user profile.
+
+```
+Uninstall App
+Clear mRemoteNG related folders under C:\Users\<username>\AppData\Roaming
+Install App
+```
+
+
 
