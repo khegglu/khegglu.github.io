@@ -158,6 +158,19 @@ The error can be bypassed by enabling the protocol again.
 Set-SmbServerConfiguration –EnableSMB1Protocol $true
 ```
 
+## The mapped network drive could not be created because the following error has occurred: An extended error has occurred.
+
+The issue seems to be one of two things. It's eiter a simple credential manager issue where some old credentials are cached, or it could be an issue as per the article that could be resolved by disabling Secure Negotiate on the windows client.
+
+- [About: Secure Negotiate](https://docs.microsoft.com/en-US/troubleshoot/windows-server/networking/error-messages-smb-connections)
+
+```
+# Option 1:
+Check credential manager, delete any credentials for the affected server if there is.
+# Option 2:
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters" RequireSecureNegotiate -Value 0 -Force
+```
+
 ## There is a problem with your Remote Desktop license, and your session will be disconnected in 60 minutes, Contact your system administrator
 
 To resolve, remove the registry key that stores the RDS license. A new key should be generated once this has been removed.
