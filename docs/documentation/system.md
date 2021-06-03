@@ -304,7 +304,7 @@ cmd /c 'icacls C:\Windows\csc /grant Administrators:(F) /t /l /q'
 
 # Clear Cache, using robocopy will purge files with too long path
 cmd /c 'mkdir C:\Temp\RoboCSC'
-cmd /c 'robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\targetfolder" /purge'
+cmd /c 'robocopy "C:\Temp\RoboCSC" "C:\Windows\CSC\v2.0.6\namespace\" /purge'
 cmd /c 'rmdir "C:\Temp\RoboCSC"'
 ```
 
