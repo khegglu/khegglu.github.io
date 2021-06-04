@@ -96,6 +96,10 @@ Get-ChildItem $path | Get-ItemProperty | Where-Object { $_.DisplayName -match 'a
 $path2 = 'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'
 Get-ChildItem $path2 | Get-ItemProperty | Where-Object { $_.DisplayName -match 'autodesk'}
 
+# Registry Search:
+$path = 'hku:\S-1-5-21-2763872571-2999947588-3099097816-000000\*'
+Get-ChildItem $path -recurse | Get-ItemProperty | Where-Object { $_ -match 'bbc' -and $_ -match 'player'}
+
 # Get UNC path from DFS shares
 - Works on root share:
 Get-DfsnFolderTarget -Path "\\dc.domain.com\uk\Sites\Contract"
