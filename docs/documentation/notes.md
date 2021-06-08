@@ -230,6 +230,10 @@ cmd /c "C:\Packages\windows 10\build\setup.exe" --silent
 Set-Content 'C:\Packages\Response.ini' -value "### Product keycode`r`nproductkey=""XXXXX-XXXXXXX-XXXXXX-XXXXXXX-XX"""
 cmd /c 'setup.exe -r C:\Packages\Response.ini'
 - https://help.sap.com/viewer/9fe2522cc23841d389160e24e801186f/2016.4/en-US/476017e16e041014910aba7db0e91070.html
+
+# Silent install of QZ Tray
+- First install Java if it is not already installed on the machine
+cmd /c 'start /wait "" C:\Packages\qz-tray-2.1.3+1.exe /S'
 ```
 
 ## UnInstalls:
