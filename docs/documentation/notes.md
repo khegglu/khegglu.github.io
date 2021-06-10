@@ -234,6 +234,11 @@ cmd /c 'setup.exe -r C:\Packages\Response.ini'
 # Silent install of QZ Tray
 - First install Java if it is not already installed on the machine
 cmd /c 'start /wait "" C:\Packages\qz-tray-2.1.3+1.exe /S'
+
+# Silent install of Bartender
+cmd /c 'C:\Packages\BT2019_R9_156128_Full_x64.exe FEATURE=BarTender PKC=xxxx-xxxx-xxxx-xxxx'
+- Removal
+cmd /c 'C:\Packages\BT2019_R9_156128_Full_x64.exe REMOVE=ALL'
 ```
 
 ## UnInstalls:
