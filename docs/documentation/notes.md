@@ -236,7 +236,10 @@ cmd /c 'setup.exe -r C:\Packages\Response.ini'
 cmd /c 'start /wait "" C:\Packages\qz-tray-2.1.3+1.exe /S'
 
 # Silent install of Bartender
+- Apparently some issue wit SQL install - https://support.seagullscientific.com/hc/en-us/community/posts/360031105814-2019-Silent-Install
 cmd /c 'C:\Packages\BT2019_R9_156128_Full_x64.exe FEATURE=BarTender PKC=xxxx-xxxx-xxxx-xxxx'
+- Works, will run from remote PS as a separate window in admin context
+Start-Process -FilePath "C:\Packages\BT2019_R9_156128_Full_x64.exe" -ArgumentList 'FEATURE=BarTender PKC=xxxx-xxxx-xxxx-xxxx' -Wait -Verb RunAs -WindowStyle hidden
 - Removal
 cmd /c 'C:\Packages\BT2019_R9_156128_Full_x64.exe REMOVE=ALL'
 ```
