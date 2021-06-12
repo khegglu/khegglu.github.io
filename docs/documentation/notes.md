@@ -127,6 +127,10 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogo
 
 # Disable local admin auto login
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AutoAdminLogon /t REG_DWORD /d 0 /f
+
+# Allow for FilePaths above 260 characters, useful for certain scripts that deals with shares that have paths longer than the limit.
+Set-ItemProperty 'HKLM:\System\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -value 1
+# GPEdit location:  Configuration > Administrative Templates > System > FileSystem
 ```
 
 ## Event Logs:
