@@ -275,5 +275,13 @@ remove-item "C:\Users\*\AppData\Local\Autodesk\Web Services\" -recurse -force
 - Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment > Deny log on locally
 ```
 
+## GPO Policy:
+
+```
+# User Configuration\Administrative Templates\Windows Components\File Explorer\Remove "Map Network Drive" and "Disconnect Network Drive"
+- HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoNetConnectDisconnect
+- Workaround to use command to map the share: net use Z: \\server\share /PERSISTENT:YES
+```
+
 
 
