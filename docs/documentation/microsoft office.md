@@ -558,8 +558,9 @@ You can confirm this information yourselves by having MS Teams open, then push t
 
 # Solution:
 - REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Citrix" /f
-- Uninstall teams from control panel
-- Install teams from the installer
+- Get-Process *Teams* | Stop-Process -Force
+- Get-Process *Outlook* | Stop-Process -Force
+- Remove-Item "C:\Users\*\Appdata\roaming\microsoft\teams" -Recurse -Confirm:$false -Force
 ```
 
 ### Running multiple MS Teams accounts side by side ~ Error: Failed to get 'downloads path
