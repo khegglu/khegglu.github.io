@@ -647,6 +647,17 @@ reg delete "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office" /f
 - [Microsoft Office 2016 KB4011631 Download](https://download.microsoft.com/download/E/3/6/E36DCF64-73A4-430E-9E5B-107CE49F714F/msodll40ui2016-kb4011631-fullfile-x64-glb.exe)
 - [Microsoft Office 2016 KB4011099 Download](https://download.microsoft.com/download/B/A/1/BA1D3A64-F1AD-49AB-B80E-2D8367D8ACBB/msodll40ui2016-kb4011099-fullfile-x64-glb.exe)
 
+### Audio Device Not configured/No Device is found. You cannot make phone calls
+
+The issue in this case seems to be that the machine is not registering either a USB headset with MIC, or a 3.5MM Jack headset. When the jack is plugged in, the kernel of the client OS triggers a flag, which Skype uses to configure the Audio Device. This is called "Dynamic Device detection", so when reporting "Audio Device Not configured" the following registry entry is set as "01 00 00 00".
+
+```
+HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/ControlClass/{4D36E96C-E325-11CE-BFC1-08002BE10318}
+Look for Key: GlobalSettings
+Look for Value: EnableDynamicDevices
+Value should be: 00 00 00 00
+```
+
 ## Access Runtime
 ### App v2016: "Error 2711.  An internal error has occurred.  (ACCESSFiles)."
 
