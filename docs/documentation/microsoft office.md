@@ -707,6 +707,25 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Off
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /f /v "OneDrive" /t REG_SZ /d "\"%LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe\" /background"
 ```
 
+### Onedrive moving folders to the onedrive folder
+
+This issue can be worked around by creating your own junctions to the different folders on the local machine.
+
+*This is not as efficient as letting onedrive handle it, since it will only detect and sync changes when the client is paused/resumed or restarted*
+
+```
+# Powershell as the user
+- First time setup on machine
+New-Item -ItemType Junction -Path "$env:OneDrive\Desktop" -Target "$home\Desktop"
+New-Item -ItemType Junction -Path "$env:OneDrive\Documents" -Target "$home\Documents"
+New-Item -ItemType Junction -Path "$env:OneDrive\Pictures" -Target "$home\Pictures"
+
+- New machine setup with previously synced folders
+New-Item -ItemType Junction -Path "$home\Desktop" -Target "$env:OneDrive\Desktop"
+New-Item -ItemType Junction -Path "$home\Documents" -Target "$env:OneDrive\Documents"
+New-Item -ItemType Junction -Path "$home\Pictures" -Target "$env:OneDrive\Pictures"
+```
+
 ### Office 2016 x64 - Win32::OLE::Const
 
 *Win32::OLE::Const did not see the Excel automation object although it was well registered and available in the registration database.*
