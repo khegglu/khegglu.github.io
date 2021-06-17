@@ -714,13 +714,15 @@ This issue can be worked around by creating your own junctions to the different 
 *This is not as efficient as letting onedrive handle it, since it will only detect and sync changes when the client is paused/resumed or restarted*
 
 ```
-# Powershell as the user
-- First time setup on machine
+# First time setup on machine
+- Create folders in the onedrive folder
+- Powershell as user
 New-Item -ItemType Junction -Path "$env:OneDrive\Desktop" -Target "$home\Desktop"
 New-Item -ItemType Junction -Path "$env:OneDrive\Documents" -Target "$home\Documents"
 New-Item -ItemType Junction -Path "$env:OneDrive\Pictures" -Target "$home\Pictures"
 
-- New machine setup with previously synced folders
+# New machine setup with previously synced folders
+- Powershell as user
 New-Item -ItemType Junction -Path "$home\Desktop" -Target "$env:OneDrive\Desktop"
 New-Item -ItemType Junction -Path "$home\Documents" -Target "$env:OneDrive\Documents"
 New-Item -ItemType Junction -Path "$home\Pictures" -Target "$env:OneDrive\Pictures"
