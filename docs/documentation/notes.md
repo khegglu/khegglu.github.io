@@ -252,6 +252,9 @@ cmd /c 'C:\Packages\BT2019_R9_156128_Full_x64.exe REMOVE=ALL'
 ## UnInstalls:
 
 ```
+# CCleaner
+cmd /c '"C:\Program Files\CCleaner\uninst.exe" /S'
+
 # AutoCAD:
 wmic product where "vendor like '%autodesk%'" call uninstall
 cmd /c 'TASKKILL /F /IM "AdAppMgr.exe" & TASKKILL /F /IM "AdAppMgrUpdater.exe" & TASKKILL /F /IM "AutodeskDesktopApp.exe"'
