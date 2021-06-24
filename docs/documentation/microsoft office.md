@@ -707,6 +707,17 @@ reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Off
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /f /v "OneDrive" /t REG_SZ /d "\"%LOCALAPPDATA%\Microsoft\OneDrive\OneDrive.exe\" /background"
 ```
 
+### Onedrive: The tag present in the reparse point buffer is invalid
+
+This issue can occur when the Files On-demand feature is used within OneDrive. The issue here is that the files within the OneDrive folder are junction files/folders, and these can get in to a bad state if OneDrive crashes or is terminated improperly.
+
+The below will schedule a full hard drive scan on the next reboot, this process will most likely take some hours to complete.
+
+```
+# powershell as the administrator
+echo y | chkdsk C: /F /R
+```
+
 ### Onedrive moving folders to the onedrive folder
 
 This issue can be worked around by creating your own junctions to the different folders on the local machine.
