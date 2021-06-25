@@ -606,6 +606,17 @@ at Object.<anonymous> (C:\Users\[username]\AppData\Local\Microsoft\Teams\current
 at Module.compile (C:\Users\[username]\AppData\Local\Microsoft\Teams\current\resources\app.asar\externa...:36)
 ```
 
+### We ran into a problem. Reconnecting…/Exit code:80080300 on Win10 1909
+
+This is an issue can occur after the installation of the 1909 patch KB5003169.
+
+*After installing this update and restarting your device, you might be unable to sign into some Microsoft 365 desktop client apps such as Microsoft Teams, OneDrive for Business and Microsoft Outlook. You might also receive an 80080300 error or "We ran into a problem. Reconnecting…" when attempting to authenticate or sign into Teams..*
+
+```
+The issue is resolved by installing the following: Cumulative Update for 1909 - KB5003635
+http://download.windowsupdate.com/c/msdownload/update/software/secu/2021/06/windows10.0-kb5003635-x64_e6ec556af0fcedbb979ea84d273fc6d4aa2c5af8.msu
+```
+
 ## Skype for Business
 ### Webcam freezing after windows update
 
