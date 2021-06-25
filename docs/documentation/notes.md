@@ -91,14 +91,14 @@ Rename-Computer –computername OldName –newname NewName –domaincredential D
 Get-ChildItem 'C:\' -recurse | where {$_.name -like '*lmi_rescue.exe*'}
 
 # Registry search:
-$path = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*'
-Get-ChildItem $path | Get-ItemProperty | Where-Object { $_.DisplayName -match 'autodesk'}
-$path2 = 'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'
-Get-ChildItem $path2 | Get-ItemProperty | Where-Object { $_.DisplayName -match 'autodesk'}
+$path = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\'
+Get-ChildItem $path -recurse | Get-ItemProperty | Where-Object { $_ -match 'autodesk'}
+$path2 = 'HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\'
+Get-ChildItem $path2 -recurse | Get-ItemProperty | Where-Object { $_ -match 'autodesk'}
 
 # User Registry Search:
 New-PSDrive -Name HKU -PSProvider Registry -Root Registry::HKEY_USERS | Out-Null
-$path = 'hku:\S-1-5-21-2763872571-2999947588-3099097816-000000\*'
+$path = 'hku:\S-1-5-21-2763872571-2999947588-3099097816-000000\'
 Get-ChildItem $path -recurse | Get-ItemProperty | Where-Object { $_ -match 'bbc' -and $_ -match 'player'}
 
 # Get UNC path from DFS shares
