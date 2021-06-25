@@ -148,6 +148,20 @@ This feature was by default hidden after a security update, it can be enabled th
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Outlook\Security" /v EnableUnsafeClientMailRules /t REG_DWORD /d 1 /f
 ```
 
+### Outlook 2016 doesn't display all images in some emails
+
+Messages that use images for links are replaced with a red X and a message that the "Linked image cannot be displayed. The file may have been moved, renamed, or deleted. Verify that the link points to the correct file and location."
+
+```
+# This value should not exist or be set from 1 to 0 to disable the block:
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Office\XX.X\Common" /v BlockHTTPimages /t REG_DWORD /d 0 /f
+reg add "HKEY_CURRENT_USER\Software\policies\Microsoft\Office\XX.X\Common" /v BlockHTTPimages /t REG_DWORD /d 0 /f
+
+# In some cases the fix is to clear Temporary Internet Files folder:
+Internet Explorer > Tools > Internet Options > General Tab > Browsing History > Settings Button and choose Move Folder.
+Remove-Item -path "C:\Users\*\AppData\Local\Microsoft\Windows\INetCache\*" -Recurse -Force -ErrorAction SilentlyContinue
+```
+
 ### The Delegates settings were not saved correctly. Unable to activate send-on-behalf-of list. You do not have sufficient permission to perform this operation on this object.
 
 *This error can occur when the Delegates list contains a mailbox user who no longer exists in the organization. To fix the error remove the non-existent user from the Delegates list before you attempt to add other Delegates or change the Delegates settings.*
