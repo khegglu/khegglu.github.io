@@ -226,6 +226,12 @@ cmd /c 'C:\Packages\PlantronicsHubInstaller.exe' /install /quiet
 # Silent install of Jabra Direct
 cmd /c 'C:\Packages\JabraDirectSetup5.2.20825.exe' /install /quiet /norestart
 
+# Silent install of Logitech Unifying Software
+cmd /c 'C:\Packages\unifying250.exe /S'
+- Installs under: C:\Program Files\Common Files\LogiShrd\Unifying\
+- Reg: HKEY_LOCAL_MACHINE\SOFTWARE\Logitech\Unifying
+* Uninstall: cmd /c 'C:\Program Files\Common Files\LogiShrd\Unifying\UnifyingUnInstaller.exe' /S
+
 # Silent install of Adobe Creative Cloud
 Expand-Archive "C:\Packages\Windows 10_en_US_WIN_64.zip" "C:\Packages"
 cmd /c "C:\Packages\windows 10\build\setup.exe" --silent
